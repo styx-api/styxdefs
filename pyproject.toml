@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "styxdefs"
-version = "0.1.0"
+version = "0.1.1"
 description = "Styx definitions and minimal runtime"
 authors = ["Florian Rupprecht <33600480+nx10@users.noreply.github.com>"]
 license = "MIT License"
@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{include = "styxdefs", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "~3.11"
+python = ">=3.10"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
