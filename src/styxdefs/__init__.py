@@ -1,6 +1,10 @@
 """.. include:: ../../README.md"""  # noqa: D415
 
-from .runner import DefaultRunner
+from .runner import (
+    DefaultRunner,
+    get_global_runner,
+    set_global_runner,
+)
 from .types import (
     Execution,
     InputPathType,
@@ -16,4 +20,6 @@ __all__ = [
     "OutputPathType",
     "Runner",
     "DefaultRunner",
+    "get_global_runner",
+    "set_global_runner",
 ]
