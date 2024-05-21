@@ -1,3 +1,5 @@
+"""Types for styx generated wrappers."""
+
 import pathlib
 import typing
 
@@ -54,11 +56,17 @@ class Metadata(typing.NamedTuple):
     container_image_type: str | None = None
     """Type of container image. Example: docker, singularity."""
     container_image_tag: str | None = None
-    """Name of an image where the tool is installed and configured. Example: bids/mriqc."""
+    """Name of an image where the tool is installed and configured.
+    Example: bids/mriqc.
+    """
     container_image_index: str | None = None
-    """Optional index where the image is available, if not the standard location. Example: docker.io"""
+    """Optional index where the image is available, if not the standard location.
+    Example: docker.io
+    """
     container_image_opts: str | None = None
-    """Container-level arguments for the application. Example: --privileged"""
+    """Container-level arguments for the application.
+    Example: --privileged
+    """
 
 
 class Runner(typing.Protocol):
