@@ -98,10 +98,16 @@
                                 <a class="function" href="#DefaultRunner.__init__">DefaultRunner</a>
                         </li>
                         <li>
+                                <a class="variable" href="#DefaultRunner.logger_name">logger_name</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#DefaultRunner.last_cargs">last_cargs</a>
                         </li>
                         <li>
                                 <a class="variable" href="#DefaultRunner.last_metadata">last_metadata</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DefaultRunner.logger">logger</a>
                         </li>
                         <li>
                                 <a class="function" href="#DefaultRunner.start_execution">start_execution</a>
@@ -117,6 +123,12 @@
                         </li>
                 </ul>
 
+            </li>
+            <li>
+                    <a class="function" href="#get_global_runner">get_global_runner</a>
+            </li>
+            <li>
+                    <a class="function" href="#set_global_runner">set_global_runner</a>
             </li>
     </ul>
 
@@ -150,23 +162,29 @@ styxdefs    </h1>
 
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;.. include:: ../../README.md&quot;&quot;&quot;</span>  <span class="c1"># noqa: D415</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">from</span> <span class="nn">.runner</span> <span class="kn">import</span> <span class="n">DefaultRunner</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="p">(</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>    <span class="n">Execution</span><span class="p">,</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>    <span class="n">InputPathType</span><span class="p">,</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>    <span class="n">Metadata</span><span class="p">,</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>    <span class="n">OutputPathType</span><span class="p">,</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>    <span class="n">Runner</span><span class="p">,</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="p">)</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>    <span class="s2">&quot;Execution&quot;</span><span class="p">,</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="s2">&quot;InputPathType&quot;</span><span class="p">,</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="s2">&quot;Metadata&quot;</span><span class="p">,</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="s2">&quot;OutputPathType&quot;</span><span class="p">,</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s2">&quot;Runner&quot;</span><span class="p">,</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s2">&quot;DefaultRunner&quot;</span><span class="p">,</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="p">]</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">from</span> <span class="nn">.runner</span> <span class="kn">import</span> <span class="p">(</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>    <span class="n">DefaultRunner</span><span class="p">,</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>    <span class="n">get_global_runner</span><span class="p">,</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>    <span class="n">set_global_runner</span><span class="p">,</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="p">)</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="p">(</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>    <span class="n">Execution</span><span class="p">,</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="n">InputPathType</span><span class="p">,</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="n">Metadata</span><span class="p">,</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>    <span class="n">OutputPathType</span><span class="p">,</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>    <span class="n">Runner</span><span class="p">,</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="p">)</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="s2">&quot;Execution&quot;</span><span class="p">,</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="s2">&quot;InputPathType&quot;</span><span class="p">,</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="s2">&quot;Metadata&quot;</span><span class="p">,</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="s2">&quot;OutputPathType&quot;</span><span class="p">,</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>    <span class="s2">&quot;Runner&quot;</span><span class="p">,</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>    <span class="s2">&quot;DefaultRunner&quot;</span><span class="p">,</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>    <span class="s2">&quot;get_global_runner&quot;</span><span class="p">,</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>    <span class="s2">&quot;set_global_runner&quot;</span><span class="p">,</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="p">]</span>
 </span></pre></div>
 
 
@@ -651,45 +669,59 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DefaultRunner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner-12"><a href="#DefaultRunner-12"><span class="linenos">12</span></a><span class="k">class</span> <span class="nc">DefaultRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">,</span> <span class="n">Execution</span><span class="p">):</span>
-</span><span id="DefaultRunner-13"><a href="#DefaultRunner-13"><span class="linenos">13</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Default runner implementation.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner-14"><a href="#DefaultRunner-14"><span class="linenos">14</span></a>
-</span><span id="DefaultRunner-15"><a href="#DefaultRunner-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner-16"><a href="#DefaultRunner-16"><span class="linenos">16</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner-17"><a href="#DefaultRunner-17"><span class="linenos">17</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="DefaultRunner-18"><a href="#DefaultRunner-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="DefaultRunner-19"><a href="#DefaultRunner-19"><span class="linenos">19</span></a>
-</span><span id="DefaultRunner-20"><a href="#DefaultRunner-20"><span class="linenos">20</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="DefaultRunner-21"><a href="#DefaultRunner-21"><span class="linenos">21</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner-22"><a href="#DefaultRunner-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-</span><span id="DefaultRunner-23"><a href="#DefaultRunner-23"><span class="linenos">23</span></a>        <span class="k">return</span> <span class="bp">self</span>
-</span><span id="DefaultRunner-24"><a href="#DefaultRunner-24"><span class="linenos">24</span></a>
-</span><span id="DefaultRunner-25"><a href="#DefaultRunner-25"><span class="linenos">25</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="DefaultRunner-26"><a href="#DefaultRunner-26"><span class="linenos">26</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve host input files.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner-27"><a href="#DefaultRunner-27"><span class="linenos">27</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
-</span><span id="DefaultRunner-28"><a href="#DefaultRunner-28"><span class="linenos">28</span></a>
-</span><span id="DefaultRunner-29"><a href="#DefaultRunner-29"><span class="linenos">29</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
-</span><span id="DefaultRunner-30"><a href="#DefaultRunner-30"><span class="linenos">30</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner-31"><a href="#DefaultRunner-31"><span class="linenos">31</span></a>        <span class="k">return</span> <span class="n">local_file</span>
-</span><span id="DefaultRunner-32"><a href="#DefaultRunner-32"><span class="linenos">32</span></a>
-</span><span id="DefaultRunner-33"><a href="#DefaultRunner-33"><span class="linenos">33</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner-34"><a href="#DefaultRunner-34"><span class="linenos">34</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner-35"><a href="#DefaultRunner-35"><span class="linenos">35</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
-</span><span id="DefaultRunner-36"><a href="#DefaultRunner-36"><span class="linenos">36</span></a>
-</span><span id="DefaultRunner-37"><a href="#DefaultRunner-37"><span class="linenos">37</span></a>        <span class="k">def</span> <span class="nf">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner-38"><a href="#DefaultRunner-38"><span class="linenos">38</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner-13"><a href="#DefaultRunner-13"><span class="linenos">13</span></a><span class="k">class</span> <span class="nc">DefaultRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">,</span> <span class="n">Execution</span><span class="p">):</span>
+</span><span id="DefaultRunner-14"><a href="#DefaultRunner-14"><span class="linenos">14</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Default runner implementation.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner-15"><a href="#DefaultRunner-15"><span class="linenos">15</span></a>
+</span><span id="DefaultRunner-16"><a href="#DefaultRunner-16"><span class="linenos">16</span></a>    <span class="n">logger_name</span> <span class="o">=</span> <span class="s2">&quot;styx_default_runner&quot;</span>
+</span><span id="DefaultRunner-17"><a href="#DefaultRunner-17"><span class="linenos">17</span></a>
+</span><span id="DefaultRunner-18"><a href="#DefaultRunner-18"><span class="linenos">18</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner-19"><a href="#DefaultRunner-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner-20"><a href="#DefaultRunner-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DefaultRunner-21"><a href="#DefaultRunner-21"><span class="linenos">21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DefaultRunner-22"><a href="#DefaultRunner-22"><span class="linenos">22</span></a>
+</span><span id="DefaultRunner-23"><a href="#DefaultRunner-23"><span class="linenos">23</span></a>        <span class="c1"># Configure logger</span>
+</span><span id="DefaultRunner-24"><a href="#DefaultRunner-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger_name</span><span class="p">)</span>
+</span><span id="DefaultRunner-25"><a href="#DefaultRunner-25"><span class="linenos">25</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
+</span><span id="DefaultRunner-26"><a href="#DefaultRunner-26"><span class="linenos">26</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="DefaultRunner-27"><a href="#DefaultRunner-27"><span class="linenos">27</span></a>            <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+</span><span id="DefaultRunner-28"><a href="#DefaultRunner-28"><span class="linenos">28</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="DefaultRunner-29"><a href="#DefaultRunner-29"><span class="linenos">29</span></a>            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+</span><span id="DefaultRunner-30"><a href="#DefaultRunner-30"><span class="linenos">30</span></a>                <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+</span><span id="DefaultRunner-31"><a href="#DefaultRunner-31"><span class="linenos">31</span></a>            <span class="p">)</span>
+</span><span id="DefaultRunner-32"><a href="#DefaultRunner-32"><span class="linenos">32</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span><span id="DefaultRunner-33"><a href="#DefaultRunner-33"><span class="linenos">33</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+</span><span id="DefaultRunner-34"><a href="#DefaultRunner-34"><span class="linenos">34</span></a>
+</span><span id="DefaultRunner-35"><a href="#DefaultRunner-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="DefaultRunner-36"><a href="#DefaultRunner-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner-37"><a href="#DefaultRunner-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+</span><span id="DefaultRunner-38"><a href="#DefaultRunner-38"><span class="linenos">38</span></a>        <span class="k">return</span> <span class="bp">self</span>
 </span><span id="DefaultRunner-39"><a href="#DefaultRunner-39"><span class="linenos">39</span></a>
-</span><span id="DefaultRunner-40"><a href="#DefaultRunner-40"><span class="linenos">40</span></a>        <span class="k">def</span> <span class="nf">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner-41"><a href="#DefaultRunner-41"><span class="linenos">41</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span id="DefaultRunner-42"><a href="#DefaultRunner-42"><span class="linenos">42</span></a>
-</span><span id="DefaultRunner-43"><a href="#DefaultRunner-43"><span class="linenos">43</span></a>        <span class="k">with</span> <span class="n">Popen</span><span class="p">(</span><span class="n">cargs</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span> <span class="k">as</span> <span class="n">process</span><span class="p">:</span>
-</span><span id="DefaultRunner-44"><a href="#DefaultRunner-44"><span class="linenos">44</span></a>            <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>  <span class="c1"># two threads to handle the streams</span>
-</span><span id="DefaultRunner-45"><a href="#DefaultRunner-45"><span class="linenos">45</span></a>                <span class="n">exhaust</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="n">deque</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-</span><span id="DefaultRunner-46"><a href="#DefaultRunner-46"><span class="linenos">46</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
-</span><span id="DefaultRunner-47"><a href="#DefaultRunner-47"><span class="linenos">47</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
-</span><span id="DefaultRunner-48"><a href="#DefaultRunner-48"><span class="linenos">48</span></a>        <span class="n">return_code</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
-</span><span id="DefaultRunner-49"><a href="#DefaultRunner-49"><span class="linenos">49</span></a>        <span class="k">if</span> <span class="n">return_code</span><span class="p">:</span>
-</span><span id="DefaultRunner-50"><a href="#DefaultRunner-50"><span class="linenos">50</span></a>            <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+</span><span id="DefaultRunner-40"><a href="#DefaultRunner-40"><span class="linenos">40</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="DefaultRunner-41"><a href="#DefaultRunner-41"><span class="linenos">41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve host input files.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner-42"><a href="#DefaultRunner-42"><span class="linenos">42</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
+</span><span id="DefaultRunner-43"><a href="#DefaultRunner-43"><span class="linenos">43</span></a>
+</span><span id="DefaultRunner-44"><a href="#DefaultRunner-44"><span class="linenos">44</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
+</span><span id="DefaultRunner-45"><a href="#DefaultRunner-45"><span class="linenos">45</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner-46"><a href="#DefaultRunner-46"><span class="linenos">46</span></a>        <span class="k">return</span> <span class="n">local_file</span>
+</span><span id="DefaultRunner-47"><a href="#DefaultRunner-47"><span class="linenos">47</span></a>
+</span><span id="DefaultRunner-48"><a href="#DefaultRunner-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner-49"><a href="#DefaultRunner-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner-50"><a href="#DefaultRunner-50"><span class="linenos">50</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
+</span><span id="DefaultRunner-51"><a href="#DefaultRunner-51"><span class="linenos">51</span></a>
+</span><span id="DefaultRunner-52"><a href="#DefaultRunner-52"><span class="linenos">52</span></a>        <span class="k">def</span> <span class="nf">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner-53"><a href="#DefaultRunner-53"><span class="linenos">53</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span id="DefaultRunner-54"><a href="#DefaultRunner-54"><span class="linenos">54</span></a>
+</span><span id="DefaultRunner-55"><a href="#DefaultRunner-55"><span class="linenos">55</span></a>        <span class="k">def</span> <span class="nf">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner-56"><a href="#DefaultRunner-56"><span class="linenos">56</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span id="DefaultRunner-57"><a href="#DefaultRunner-57"><span class="linenos">57</span></a>
+</span><span id="DefaultRunner-58"><a href="#DefaultRunner-58"><span class="linenos">58</span></a>        <span class="k">with</span> <span class="n">Popen</span><span class="p">(</span><span class="n">cargs</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span> <span class="k">as</span> <span class="n">process</span><span class="p">:</span>
+</span><span id="DefaultRunner-59"><a href="#DefaultRunner-59"><span class="linenos">59</span></a>            <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>  <span class="c1"># two threads to handle the streams</span>
+</span><span id="DefaultRunner-60"><a href="#DefaultRunner-60"><span class="linenos">60</span></a>                <span class="n">exhaust</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="n">deque</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</span><span id="DefaultRunner-61"><a href="#DefaultRunner-61"><span class="linenos">61</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="DefaultRunner-62"><a href="#DefaultRunner-62"><span class="linenos">62</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="DefaultRunner-63"><a href="#DefaultRunner-63"><span class="linenos">63</span></a>        <span class="n">return_code</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+</span><span id="DefaultRunner-64"><a href="#DefaultRunner-64"><span class="linenos">64</span></a>        <span class="k">if</span> <span class="n">return_code</span><span class="p">:</span>
+</span><span id="DefaultRunner-65"><a href="#DefaultRunner-65"><span class="linenos">65</span></a>            <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -707,16 +739,40 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DefaultRunner.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.__init__-15"><a href="#DefaultRunner.__init__-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner.__init__-16"><a href="#DefaultRunner.__init__-16"><span class="linenos">16</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner.__init__-17"><a href="#DefaultRunner.__init__-17"><span class="linenos">17</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="DefaultRunner.__init__-18"><a href="#DefaultRunner.__init__-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.__init__-18"><a href="#DefaultRunner.__init__-18"><span class="linenos">18</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner.__init__-19"><a href="#DefaultRunner.__init__-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner.__init__-20"><a href="#DefaultRunner.__init__-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DefaultRunner.__init__-21"><a href="#DefaultRunner.__init__-21"><span class="linenos">21</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DefaultRunner.__init__-22"><a href="#DefaultRunner.__init__-22"><span class="linenos">22</span></a>
+</span><span id="DefaultRunner.__init__-23"><a href="#DefaultRunner.__init__-23"><span class="linenos">23</span></a>        <span class="c1"># Configure logger</span>
+</span><span id="DefaultRunner.__init__-24"><a href="#DefaultRunner.__init__-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger_name</span><span class="p">)</span>
+</span><span id="DefaultRunner.__init__-25"><a href="#DefaultRunner.__init__-25"><span class="linenos">25</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
+</span><span id="DefaultRunner.__init__-26"><a href="#DefaultRunner.__init__-26"><span class="linenos">26</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="DefaultRunner.__init__-27"><a href="#DefaultRunner.__init__-27"><span class="linenos">27</span></a>            <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+</span><span id="DefaultRunner.__init__-28"><a href="#DefaultRunner.__init__-28"><span class="linenos">28</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="DefaultRunner.__init__-29"><a href="#DefaultRunner.__init__-29"><span class="linenos">29</span></a>            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+</span><span id="DefaultRunner.__init__-30"><a href="#DefaultRunner.__init__-30"><span class="linenos">30</span></a>                <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+</span><span id="DefaultRunner.__init__-31"><a href="#DefaultRunner.__init__-31"><span class="linenos">31</span></a>            <span class="p">)</span>
+</span><span id="DefaultRunner.__init__-32"><a href="#DefaultRunner.__init__-32"><span class="linenos">32</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span><span id="DefaultRunner.__init__-33"><a href="#DefaultRunner.__init__-33"><span class="linenos">33</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Initialize the runner.</p>
 </div>
 
+
+                            </div>
+                            <div id="DefaultRunner.logger_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">logger_name</span>        =
+<span class="default_value">&#39;styx_default_runner&#39;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DefaultRunner.logger_name"></a>
+    
+    
 
                             </div>
                             <div id="DefaultRunner.last_cargs" class="classattr">
@@ -741,6 +797,17 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
     
 
                             </div>
+                            <div id="DefaultRunner.logger" class="classattr">
+                                <div class="attr variable">
+            <span class="name">logger</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DefaultRunner.logger"></a>
+    
+    
+
+                            </div>
                             <div id="DefaultRunner.start_execution" class="classattr">
                                         <input id="DefaultRunner.start_execution-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
@@ -752,10 +819,10 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DefaultRunner.start_execution"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.start_execution-20"><a href="#DefaultRunner.start_execution-20"><span class="linenos">20</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="DefaultRunner.start_execution-21"><a href="#DefaultRunner.start_execution-21"><span class="linenos">21</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner.start_execution-22"><a href="#DefaultRunner.start_execution-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-</span><span id="DefaultRunner.start_execution-23"><a href="#DefaultRunner.start_execution-23"><span class="linenos">23</span></a>        <span class="k">return</span> <span class="bp">self</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.start_execution-35"><a href="#DefaultRunner.start_execution-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="DefaultRunner.start_execution-36"><a href="#DefaultRunner.start_execution-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner.start_execution-37"><a href="#DefaultRunner.start_execution-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+</span><span id="DefaultRunner.start_execution-38"><a href="#DefaultRunner.start_execution-38"><span class="linenos">38</span></a>        <span class="k">return</span> <span class="bp">self</span>
 </span></pre></div>
 
 
@@ -775,9 +842,9 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DefaultRunner.input_file"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.input_file-25"><a href="#DefaultRunner.input_file-25"><span class="linenos">25</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="DefaultRunner.input_file-26"><a href="#DefaultRunner.input_file-26"><span class="linenos">26</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve host input files.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner.input_file-27"><a href="#DefaultRunner.input_file-27"><span class="linenos">27</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.input_file-40"><a href="#DefaultRunner.input_file-40"><span class="linenos">40</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="DefaultRunner.input_file-41"><a href="#DefaultRunner.input_file-41"><span class="linenos">41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve host input files.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner.input_file-42"><a href="#DefaultRunner.input_file-42"><span class="linenos">42</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -797,9 +864,9 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DefaultRunner.output_file"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.output_file-29"><a href="#DefaultRunner.output_file-29"><span class="linenos">29</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
-</span><span id="DefaultRunner.output_file-30"><a href="#DefaultRunner.output_file-30"><span class="linenos">30</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner.output_file-31"><a href="#DefaultRunner.output_file-31"><span class="linenos">31</span></a>        <span class="k">return</span> <span class="n">local_file</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.output_file-44"><a href="#DefaultRunner.output_file-44"><span class="linenos">44</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
+</span><span id="DefaultRunner.output_file-45"><a href="#DefaultRunner.output_file-45"><span class="linenos">45</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner.output_file-46"><a href="#DefaultRunner.output_file-46"><span class="linenos">46</span></a>        <span class="k">return</span> <span class="n">local_file</span>
 </span></pre></div>
 
 
@@ -819,24 +886,24 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DefaultRunner.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.run-33"><a href="#DefaultRunner.run-33"><span class="linenos">33</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner.run-34"><a href="#DefaultRunner.run-34"><span class="linenos">34</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.&quot;&quot;&quot;</span>
-</span><span id="DefaultRunner.run-35"><a href="#DefaultRunner.run-35"><span class="linenos">35</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
-</span><span id="DefaultRunner.run-36"><a href="#DefaultRunner.run-36"><span class="linenos">36</span></a>
-</span><span id="DefaultRunner.run-37"><a href="#DefaultRunner.run-37"><span class="linenos">37</span></a>        <span class="k">def</span> <span class="nf">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner.run-38"><a href="#DefaultRunner.run-38"><span class="linenos">38</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span id="DefaultRunner.run-39"><a href="#DefaultRunner.run-39"><span class="linenos">39</span></a>
-</span><span id="DefaultRunner.run-40"><a href="#DefaultRunner.run-40"><span class="linenos">40</span></a>        <span class="k">def</span> <span class="nf">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DefaultRunner.run-41"><a href="#DefaultRunner.run-41"><span class="linenos">41</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span id="DefaultRunner.run-42"><a href="#DefaultRunner.run-42"><span class="linenos">42</span></a>
-</span><span id="DefaultRunner.run-43"><a href="#DefaultRunner.run-43"><span class="linenos">43</span></a>        <span class="k">with</span> <span class="n">Popen</span><span class="p">(</span><span class="n">cargs</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span> <span class="k">as</span> <span class="n">process</span><span class="p">:</span>
-</span><span id="DefaultRunner.run-44"><a href="#DefaultRunner.run-44"><span class="linenos">44</span></a>            <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>  <span class="c1"># two threads to handle the streams</span>
-</span><span id="DefaultRunner.run-45"><a href="#DefaultRunner.run-45"><span class="linenos">45</span></a>                <span class="n">exhaust</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="n">deque</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-</span><span id="DefaultRunner.run-46"><a href="#DefaultRunner.run-46"><span class="linenos">46</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
-</span><span id="DefaultRunner.run-47"><a href="#DefaultRunner.run-47"><span class="linenos">47</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
-</span><span id="DefaultRunner.run-48"><a href="#DefaultRunner.run-48"><span class="linenos">48</span></a>        <span class="n">return_code</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
-</span><span id="DefaultRunner.run-49"><a href="#DefaultRunner.run-49"><span class="linenos">49</span></a>        <span class="k">if</span> <span class="n">return_code</span><span class="p">:</span>
-</span><span id="DefaultRunner.run-50"><a href="#DefaultRunner.run-50"><span class="linenos">50</span></a>            <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DefaultRunner.run-48"><a href="#DefaultRunner.run-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner.run-49"><a href="#DefaultRunner.run-49"><span class="linenos">49</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.&quot;&quot;&quot;</span>
+</span><span id="DefaultRunner.run-50"><a href="#DefaultRunner.run-50"><span class="linenos">50</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
+</span><span id="DefaultRunner.run-51"><a href="#DefaultRunner.run-51"><span class="linenos">51</span></a>
+</span><span id="DefaultRunner.run-52"><a href="#DefaultRunner.run-52"><span class="linenos">52</span></a>        <span class="k">def</span> <span class="nf">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner.run-53"><a href="#DefaultRunner.run-53"><span class="linenos">53</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span id="DefaultRunner.run-54"><a href="#DefaultRunner.run-54"><span class="linenos">54</span></a>
+</span><span id="DefaultRunner.run-55"><a href="#DefaultRunner.run-55"><span class="linenos">55</span></a>        <span class="k">def</span> <span class="nf">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DefaultRunner.run-56"><a href="#DefaultRunner.run-56"><span class="linenos">56</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span id="DefaultRunner.run-57"><a href="#DefaultRunner.run-57"><span class="linenos">57</span></a>
+</span><span id="DefaultRunner.run-58"><a href="#DefaultRunner.run-58"><span class="linenos">58</span></a>        <span class="k">with</span> <span class="n">Popen</span><span class="p">(</span><span class="n">cargs</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span> <span class="k">as</span> <span class="n">process</span><span class="p">:</span>
+</span><span id="DefaultRunner.run-59"><a href="#DefaultRunner.run-59"><span class="linenos">59</span></a>            <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>  <span class="c1"># two threads to handle the streams</span>
+</span><span id="DefaultRunner.run-60"><a href="#DefaultRunner.run-60"><span class="linenos">60</span></a>                <span class="n">exhaust</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="n">deque</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</span><span id="DefaultRunner.run-61"><a href="#DefaultRunner.run-61"><span class="linenos">61</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stdout_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="DefaultRunner.run-62"><a href="#DefaultRunner.run-62"><span class="linenos">62</span></a>                <span class="n">exhaust</span><span class="p">(</span><span class="n">stderr_handler</span><span class="p">(</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="DefaultRunner.run-63"><a href="#DefaultRunner.run-63"><span class="linenos">63</span></a>        <span class="n">return_code</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+</span><span id="DefaultRunner.run-64"><a href="#DefaultRunner.run-64"><span class="linenos">64</span></a>        <span class="k">if</span> <span class="n">return_code</span><span class="p">:</span>
+</span><span id="DefaultRunner.run-65"><a href="#DefaultRunner.run-65"><span class="linenos">65</span></a>            <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -845,6 +912,54 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
 
                             </div>
+                </section>
+                <section id="get_global_runner">
+                            <input id="get_global_runner-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_global_runner</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="n"><a href="#DefaultRunner">DefaultRunner</a></span>:</span></span>
+
+                <label class="view-source-button" for="get_global_runner-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#get_global_runner"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_global_runner-71"><a href="#get_global_runner-71"><span class="linenos">71</span></a><span class="k">def</span> <span class="nf">get_global_runner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DefaultRunner</span><span class="p">:</span>
+</span><span id="get_global_runner-72"><a href="#get_global_runner-72"><span class="linenos">72</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the default runner.&quot;&quot;&quot;</span>
+</span><span id="get_global_runner-73"><a href="#get_global_runner-73"><span class="linenos">73</span></a>    <span class="k">global</span> <span class="n">_DEFAULT_RUNNER</span>
+</span><span id="get_global_runner-74"><a href="#get_global_runner-74"><span class="linenos">74</span></a>    <span class="k">if</span> <span class="n">_DEFAULT_RUNNER</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="get_global_runner-75"><a href="#get_global_runner-75"><span class="linenos">75</span></a>        <span class="n">_DEFAULT_RUNNER</span> <span class="o">=</span> <span class="n">DefaultRunner</span><span class="p">()</span>
+</span><span id="get_global_runner-76"><a href="#get_global_runner-76"><span class="linenos">76</span></a>    <span class="k">return</span> <span class="n">_DEFAULT_RUNNER</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Get the default runner.</p>
+</div>
+
+
+                </section>
+                <section id="set_global_runner">
+                            <input id="set_global_runner-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">set_global_runner</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">runner</span><span class="p">:</span> <span class="n"><a href="#DefaultRunner">DefaultRunner</a></span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+                <label class="view-source-button" for="set_global_runner-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#set_global_runner"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="set_global_runner-79"><a href="#set_global_runner-79"><span class="linenos">79</span></a><span class="k">def</span> <span class="nf">set_global_runner</span><span class="p">(</span><span class="n">runner</span><span class="p">:</span> <span class="n">DefaultRunner</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="set_global_runner-80"><a href="#set_global_runner-80"><span class="linenos">80</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the default runner.&quot;&quot;&quot;</span>
+</span><span id="set_global_runner-81"><a href="#set_global_runner-81"><span class="linenos">81</span></a>    <span class="k">global</span> <span class="n">_DEFAULT_RUNNER</span>
+</span><span id="set_global_runner-82"><a href="#set_global_runner-82"><span class="linenos">82</span></a>    <span class="n">_DEFAULT_RUNNER</span> <span class="o">=</span> <span class="n">runner</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Set the default runner.</p>
+</div>
+
+
                 </section>
     </main>
 </body>
