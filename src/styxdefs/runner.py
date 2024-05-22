@@ -63,7 +63,7 @@ class DefaultRunner(Runner):
         """Initialize the runner."""
         self.last_cargs: list[str] | None = None
         self.last_metadata: Metadata | None = None
-        self.data_dir = data_dir or pathlib.Path("styx_tmp")
+        self.data_dir = pathlib.Path(data_dir or "styx_tmp")
         self.uid = os.urandom(8).hex()
         self.execution_counter = 0
 
@@ -84,7 +84,7 @@ class DefaultRunner(Runner):
         self.last_metadata = metadata
         return _DefaultExecution(
             logger=self.logger,
-            dir=self.data_dir / f"{self.uid}_{self.execution_counter}_{metadata.name}"
+            dir=self.data_dir / f"{self.uid}_{self.execution_counter}_{metadata.name}",
         )
 
 
