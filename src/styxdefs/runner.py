@@ -72,7 +72,7 @@ class DefaultRunner(Runner):
             ch = logging.StreamHandler()
             ch.setLevel(logging.DEBUG)
             formatter = logging.Formatter(
-                "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+                "[%(levelname)s.1s] %(message)s"
             )
             ch.setFormatter(formatter)
             self.logger.addHandler(ch)
