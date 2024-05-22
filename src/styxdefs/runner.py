@@ -83,7 +83,8 @@ class DefaultRunner(Runner):
         """Start a new execution."""
         self.last_metadata = metadata
         return _DefaultExecution(
-            self.data_dir / f"{self.uid}_{self.execution_counter}_{metadata.name}"
+            logger=self.logger,
+            dir=self.data_dir / f"{self.uid}_{self.execution_counter}_{metadata.name}"
         )
 
 
