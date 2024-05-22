@@ -19,6 +19,13 @@ class _DefaultExecution(Execution):
         self.logger: logging.Logger = logger
         self.dir: pathlib.Path = dir
 
+        while self.dir.exists():
+            self.logger.warning(
+                f"Execution directory {self.dir} already exists. Trying another."
+            )
+            self.dir = self.dir.with_name(f"{self.dir.name}_1")
+        self.dir.mkdir(parents=True, exist_ok=True)
+
     def input_file(self, host_file: InputPathType) -> str:
         """Resolve host input files."""
         return str(pathlib.Path(host_file).absolute())
@@ -29,20 +36,13 @@ class _DefaultExecution(Execution):
 
     def run(self, cargs: list[str]) -> None:
         """Run the command."""
-        self.last_cargs = cargs
+        self.logger.debug(f"Running command: {cargs} in '{self.dir}'.")
 
         def _stdout_handler(line: str) -> None:
             self.logger.info(line)
 
         def _stderr_handler(line: str) -> None:
             self.logger.error(line)
-
-        while self.dir.exists():
-            self.logger.warning(
-                f"Execution directory {self.dir} already exists. Trying another."
-            )
-            self.dir = self.dir.with_name(f"{self.dir.name}_1")
-        self.dir.mkdir(parents=True, exist_ok=True)
 
         with Popen(cargs, text=True, stdout=PIPE, stderr=PIPE, cwd=self.dir) as process:
             with ThreadPoolExecutor(2) as pool:  # two threads to handle the streams
@@ -61,8 +61,6 @@ class DefaultRunner(Runner):
 
     def __init__(self, data_dir: InputPathType | None = None) -> None:
         """Initialize the runner."""
-        self.last_cargs: list[str] | None = None
-        self.last_metadata: Metadata | None = None
         self.data_dir = pathlib.Path(data_dir or "styx_tmp")
         self.uid = os.urandom(8).hex()
         self.execution_counter = 0
@@ -81,7 +79,6 @@ class DefaultRunner(Runner):
 
     def start_execution(self, metadata: Metadata) -> Execution:
         """Start a new execution."""
-        self.last_metadata = metadata
         return _DefaultExecution(
             logger=self.logger,
             dir=self.data_dir / f"{self.uid}_{self.execution_counter}_{metadata.name}",
