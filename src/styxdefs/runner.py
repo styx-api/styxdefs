@@ -21,7 +21,7 @@ class _DefaultExecution(Execution):
 
     def input_file(self, host_file: InputPathType) -> str:
         """Resolve host input files."""
-        return str(host_file)
+        return str(pathlib.Path(host_file).absolute())
 
     def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
         """Resolve local output files."""
