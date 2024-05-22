@@ -71,17 +71,17 @@ class DefaultRunner(Runner):
             self.logger.setLevel(logging.DEBUG)
             ch = logging.StreamHandler()
             ch.setLevel(logging.DEBUG)
-            formatter = logging.Formatter(
-                "[%(levelname)s.1s] %(message)s"
-            )
+            formatter = logging.Formatter("[%(levelname)s.1s] %(message)s")
             ch.setFormatter(formatter)
             self.logger.addHandler(ch)
 
     def start_execution(self, metadata: Metadata) -> Execution:
         """Start a new execution."""
+        self.execution_counter += 1
         return _DefaultExecution(
             logger=self.logger,
-            dir=self.data_dir / f"{self.uid}_{self.execution_counter}_{metadata.name}",
+            dir=self.data_dir
+            / f"{self.uid}_{self.execution_counter - 1}_{metadata.name}",
         )
 
 
