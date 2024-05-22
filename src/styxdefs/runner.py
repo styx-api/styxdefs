@@ -23,7 +23,7 @@ class _DefaultExecution(Execution):
         """Resolve host input files."""
         return str(host_file)
 
-    def output_file(self, local_file: str, _optional: bool = False) -> OutputPathType:
+    def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
         """Resolve local output files."""
         return str(self.dir / local_file)
 
