@@ -6,4 +6,3 @@
 ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/childmindresearch/styxdefs/blob/main/LICENSE)
 [![pages](https://img.shields.io/badge/api-docs-blue)](https://childmindresearch.github.io/styxdefs)
-

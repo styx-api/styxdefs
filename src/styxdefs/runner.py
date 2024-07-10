@@ -85,10 +85,10 @@ class DefaultRunner(Runner):
         )
 
 
-_DEFAULT_RUNNER: DefaultRunner | None = None
+_DEFAULT_RUNNER: Runner | None = None
 
 
-def get_global_runner() -> DefaultRunner:
+def get_global_runner() -> Runner:
     """Get the default runner."""
     global _DEFAULT_RUNNER
     if _DEFAULT_RUNNER is None:
@@ -96,7 +96,7 @@ def get_global_runner() -> DefaultRunner:
     return _DEFAULT_RUNNER
 
 
-def set_global_runner(runner: DefaultRunner) -> None:
+def set_global_runner(runner: Runner) -> None:
     """Set the default runner."""
     global _DEFAULT_RUNNER
     _DEFAULT_RUNNER = runner
