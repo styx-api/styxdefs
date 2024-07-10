@@ -821,13 +821,13 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">get_global_runner</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="n"><a href="#DefaultRunner">DefaultRunner</a></span>:</span></span>
+        <span class="name">get_global_runner</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="n"><a href="#Runner">Runner</a></span>:</span></span>
 
                 <label class="view-source-button" for="get_global_runner-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#get_global_runner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_global_runner-92"><a href="#get_global_runner-92"><span class="linenos">92</span></a><span class="k">def</span> <span class="nf">get_global_runner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DefaultRunner</span><span class="p">:</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_global_runner-92"><a href="#get_global_runner-92"><span class="linenos">92</span></a><span class="k">def</span> <span class="nf">get_global_runner</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Runner</span><span class="p">:</span>
 </span><span id="get_global_runner-93"><a href="#get_global_runner-93"><span class="linenos">93</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the default runner.&quot;&quot;&quot;</span>
 </span><span id="get_global_runner-94"><a href="#get_global_runner-94"><span class="linenos">94</span></a>    <span class="k">global</span> <span class="n">_DEFAULT_RUNNER</span>
 </span><span id="get_global_runner-95"><a href="#get_global_runner-95"><span class="linenos">95</span></a>    <span class="k">if</span> <span class="n">_DEFAULT_RUNNER</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -846,13 +846,13 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">set_global_runner</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">runner</span><span class="p">:</span> <span class="n"><a href="#DefaultRunner">DefaultRunner</a></span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">set_global_runner</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">runner</span><span class="p">:</span> <span class="n"><a href="#Runner">Runner</a></span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
                 <label class="view-source-button" for="set_global_runner-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#set_global_runner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="set_global_runner-100"><a href="#set_global_runner-100"><span class="linenos">100</span></a><span class="k">def</span> <span class="nf">set_global_runner</span><span class="p">(</span><span class="n">runner</span><span class="p">:</span> <span class="n">DefaultRunner</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="set_global_runner-100"><a href="#set_global_runner-100"><span class="linenos">100</span></a><span class="k">def</span> <span class="nf">set_global_runner</span><span class="p">(</span><span class="n">runner</span><span class="p">:</span> <span class="n">Runner</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="set_global_runner-101"><a href="#set_global_runner-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the default runner.&quot;&quot;&quot;</span>
 </span><span id="set_global_runner-102"><a href="#set_global_runner-102"><span class="linenos">102</span></a>    <span class="k">global</span> <span class="n">_DEFAULT_RUNNER</span>
 </span><span id="set_global_runner-103"><a href="#set_global_runner-103"><span class="linenos">103</span></a>    <span class="n">_DEFAULT_RUNNER</span> <span class="o">=</span> <span class="n">runner</span>
