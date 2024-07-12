@@ -5,7 +5,7 @@ import typing
 
 InputPathType: typing.TypeAlias = pathlib.Path | str
 """Input host file type."""
-OutputPathType: typing.TypeAlias = pathlib.Path | str
+OutputPathType: typing.TypeAlias = pathlib.Path
 """Output host file type."""
 
 

@@ -32,7 +32,7 @@ class _DefaultExecution(Execution):
 
     def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
         """Resolve local output files."""
-        return str(self.dir / local_file)
+        return self.dir / local_file
 
     def run(self, cargs: list[str]) -> None:
         """Run the command."""
