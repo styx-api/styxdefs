@@ -1,9 +1,11 @@
 """.. include:: ../../README.md"""  # noqa: D415
 
-from .runner import (
-    DefaultRunner,
+from .global_state import (
     get_global_runner,
     set_global_runner,
+)
+from .local_runner import (
+    LocalRunner,
 )
 from .types import (
     Execution,
@@ -11,6 +13,7 @@ from .types import (
     Metadata,
     OutputPathType,
     Runner,
+    StyxRuntimeError,
 )
 
 __all__ = [
@@ -19,7 +22,8 @@ __all__ = [
     "Metadata",
     "OutputPathType",
     "Runner",
-    "DefaultRunner",
+    "LocalRunner",
     "get_global_runner",
     "set_global_runner",
+    "StyxRuntimeError",
 ]

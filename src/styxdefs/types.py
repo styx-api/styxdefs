@@ -1,6 +1,7 @@
 """Types for styx generated wrappers."""
 
 import pathlib
+import shlex
 import typing
 
 InputPathType: typing.TypeAlias = pathlib.Path | str
@@ -53,6 +54,10 @@ class Metadata(typing.NamedTuple):
     """Unique identifier of the tool."""
     name: str
     """Name of the tool."""
+    package: str | None = None
+    """Name of the package that provides the tool."""
+    citations: list[str] | None = None
+    """List of references to cite when using the tool."""
     container_image_type: str | None = None
     """Type of container image. Example: docker, singularity."""
     container_image_tag: str | None = None
@@ -83,3 +88,29 @@ class Runner(typing.Protocol):
         Called before any `Execution.input_file()` calls.
         """
         ...
+
+
+class StyxRuntimeError(Exception):
+    """Styx runtime error.
+
+    Raised when a command reports a non-zero return code.
+    """
+
+    def __init__(
+        self,
+        return_code: int | None = None,
+        command_args: list[str] | None = None,
+    ) -> None:
+        """Initialize the error."""
+        self.return_code = return_code
+        self.command_args = command_args
+
+        message = "Command failed."
+
+        if return_code is not None:
+            message += f"\n- Return code: {return_code}"
+
+        if command_args is not None:
+            message += f"\n- Command args: {shlex.join(command_args)}"
+
+        super().__init__(message)
