@@ -100,17 +100,21 @@ class StyxRuntimeError(Exception):
         self,
         return_code: int | None = None,
         command_args: list[str] | None = None,
+        message_extra: str | None = None,
     ) -> None:
         """Initialize the error."""
         self.return_code = return_code
         self.command_args = command_args
 
-        message = "Command failed."
-
         if return_code is not None:
-            message += f"\n- Return code: {return_code}"
+            message = f"Command failed with return code {return_code}."
+        else:
+            message = "Command failed."
 
         if command_args is not None:
             message += f"\n- Command args: {shlex.join(command_args)}"
+
+        if message_extra is not None:
+            message += f"\n{message_extra}"
 
         super().__init__(message)
