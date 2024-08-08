@@ -28,11 +28,13 @@ class _LocalExecution(Execution):
         logger: logging.Logger,
         output_dir: pathlib.Path,
         metadata: Metadata,
+        environ: dict[str, str] | None,
     ) -> None:
         """Initialize the execution."""
         self.logger: logging.Logger = logger
         self.output_dir: pathlib.Path = output_dir
         self.metadata: Metadata = metadata
+        self.environ = environ
 
         while self.output_dir.exists():
             self.logger.warning(
@@ -61,7 +63,12 @@ class _LocalExecution(Execution):
 
         time_start = datetime.now()
         with Popen(
-            cargs, text=True, stdout=PIPE, stderr=PIPE, cwd=self.output_dir
+            cargs,
+            text=True,
+            stdout=PIPE,
+            stderr=PIPE,
+            cwd=self.output_dir,
+            env=self.environ,
         ) as process:
             with ThreadPoolExecutor(2) as pool:  # two threads to handle the streams
                 exhaust = partial(pool.submit, partial(deque, maxlen=0))
@@ -79,11 +86,16 @@ class LocalRunner(Runner):
 
     logger_name = "styx_local_runner"
 
-    def __init__(self, data_dir: InputPathType | None = None) -> None:
+    def __init__(
+        self,
+        data_dir: InputPathType | None = None,
+        environ: dict[str, str] | None = None,
+    ) -> None:
         """Initialize the runner."""
         self.data_dir = pathlib.Path(data_dir or "styx_tmp")
         self.uid = os.urandom(8).hex()
         self.execution_counter = 0
+        self.environ = environ
 
         # Configure logger
         self.logger = logging.getLogger(self.logger_name)
@@ -105,4 +117,5 @@ class LocalRunner(Runner):
             logger=self.logger,
             output_dir=output_dir,
             metadata=metadata,
+            environ=self.environ,
         )
