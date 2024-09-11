@@ -4,13 +4,10 @@ import pathlib
 import shlex
 import typing
 
-if typing.TYPE_CHECKING:
-    InputPathType = pathlib.Path | str
-    """Input host file type."""
-    OutputPathType = pathlib.Path
-    """Output host file type."""
-else:
-    InputPathType = OutputPathType = None
+InputPathType = pathlib.Path | str
+"""Input host file type."""
+OutputPathType = pathlib.Path
+"""Output host file type."""
 
 
 class Execution(typing.Protocol):
