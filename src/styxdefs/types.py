@@ -4,10 +4,13 @@ import pathlib
 import shlex
 import typing
 
-InputPathType: typing.TypeAlias = pathlib.Path | str
-"""Input host file type."""
-OutputPathType: typing.TypeAlias = pathlib.Path
-"""Output host file type."""
+if typing.TYPE_CHECKING:
+    InputPathType = pathlib.Path | str
+    """Input host file type."""
+    OutputPathType = pathlib.Path
+    """Output host file type."""
+else:
+    InputPathType = OutputPathType = None
 
 
 class Execution(typing.Protocol):
@@ -16,29 +19,47 @@ class Execution(typing.Protocol):
     Created by `Runner.start_execution()`.
     """
 
-    def input_file(self, host_file: InputPathType) -> str:
+    def input_file(self, host_file: InputPathType, resolve_parent: bool = False) -> str:
         """Resolve host input files.
 
-        Returns a local filepath.
-        Called (potentially multiple times) after
-        `Runner.start_execution()` and before `Runner.run()`.
+        Args:
+            host_file: The input file path on the host system.
+            resolve_parent: If True, resolve the parent directory of the input file.
+
+        Returns:
+            str: A local filepath.
+
+        Note:
+            Called (potentially multiple times) after
+            `Runner.start_execution()` and before `Runner.run()`.
         """
         ...
 
     def run(self, cargs: list[str]) -> None:
         """Run the command.
 
-        Called after all `Execution.input_file()`
-        and `Execution.output_file()` calls.
+        Args:
+            cargs: A list of command arguments.
+
+        Note:
+            Called after all `Execution.input_file()`
+            and `Execution.output_file()` calls.
         """
         ...
 
     def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
         """Resolve local output files.
 
-        Returns a host filepath.
-        Called (potentially multiple times) after all
-        `Runner.input_file()` calls.
+        Args:
+            local_file: The local file path.
+            optional: If True, the output file is optional.
+
+        Returns:
+            OutputPathType: A host filepath.
+
+        Note:
+            Called (potentially multiple times) after all
+            `Runner.input_file()` calls.
         """
         ...
 
@@ -75,7 +96,14 @@ class Runner(typing.Protocol):
     def start_execution(self, metadata: Metadata) -> Execution:
         """Start an execution.
 
-        Called before any `Execution.input_file()` calls.
+        Args:
+            metadata: Static tool metadata.
+
+        Returns:
+            Execution: An Execution object.
+
+        Note:
+            Called before any `Execution.input_file()` calls.
         """
         ...
 
@@ -84,6 +112,10 @@ class StyxRuntimeError(Exception):
     """Styx runtime error.
 
     Raised when a command reports a non-zero return code.
+
+    Attributes:
+        return_code: The return code of the failed command.
+        command_args: The arguments of the failed command.
     """
 
     def __init__(
@@ -92,7 +124,13 @@ class StyxRuntimeError(Exception):
         command_args: list[str] | None = None,
         message_extra: str | None = None,
     ) -> None:
-        """Initialize the error."""
+        """Initialize the error.
+
+        Args:
+            return_code: The return code of the failed command.
+            command_args: The arguments of the failed command.
+            message_extra: Additional error message.
+        """
         self.return_code = return_code
         self.command_args = command_args
 
