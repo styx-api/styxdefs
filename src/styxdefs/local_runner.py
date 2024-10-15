@@ -43,7 +43,12 @@ class _LocalExecution(Execution):
             self.output_dir = self.output_dir.with_name(f"{self.output_dir.name}_1")
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-    def input_file(self, host_file: InputPathType, resolve_parent: bool = False) -> str:
+    def input_file(
+        self,
+        host_file: InputPathType,
+        resolve_parent: bool = False,
+        mutable: bool = False,
+    ) -> str:
         """Resolve host input files."""
         return str(pathlib.Path(host_file).absolute())
 

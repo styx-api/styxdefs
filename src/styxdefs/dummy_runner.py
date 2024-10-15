@@ -18,7 +18,12 @@ class DummyRunner(Runner, Execution):
         self.last_metadata = metadata
         return self
 
-    def input_file(self, host_file: InputPathType, resolve_parent: bool = False) -> str:
+    def input_file(
+        self,
+        host_file: InputPathType,
+        resolve_parent: bool = False,
+        mutable: bool = False,
+    ) -> str:
         """Resolve input file."""
         return str(host_file)
 

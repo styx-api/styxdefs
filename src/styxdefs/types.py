@@ -16,12 +16,18 @@ class Execution(typing.Protocol):
     Created by `Runner.start_execution()`.
     """
 
-    def input_file(self, host_file: InputPathType, resolve_parent: bool = False) -> str:
+    def input_file(
+        self,
+        host_file: InputPathType,
+        resolve_parent: bool = False,
+        mutable: bool = False,
+    ) -> str:
         """Resolve host input files.
 
         Args:
             host_file: The input file path on the host system.
             resolve_parent: If True, resolve the parent directory of the input file.
+            mutable: If True, the input file may be written to during execution.
 
         Returns:
             str: A local filepath.
