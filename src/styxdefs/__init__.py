@@ -1,6 +1,7 @@
 """.. include:: ../../README.md"""  # noqa: D415
 
-from .dummy_runner import (
+from .dry_runner import (
+    DryRunner,
     DummyRunner,
 )
 from .global_state import (
@@ -26,6 +27,7 @@ __all__ = [
     "OutputPathType",
     "Runner",
     "LocalRunner",
+    "DryRunner",
     "DummyRunner",
     "get_global_runner",
     "set_global_runner",

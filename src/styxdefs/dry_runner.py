@@ -5,11 +5,11 @@ import pathlib
 from .types import Execution, InputPathType, Metadata, OutputPathType, Runner
 
 
-class DummyRunner(Runner, Execution):
-    """Dummy runner for debugging purposes."""
+class DryRunner(Runner, Execution):
+    """Dry runner for debugging purposes."""
 
     def __init__(self) -> None:
-        """Create new dummy runner."""
+        """Create new dry runner."""
         self.last_cargs: list[str] | None = None
         self.last_metadata: Metadata | None = None
 
@@ -32,5 +32,15 @@ class DummyRunner(Runner, Execution):
         return pathlib.Path(local_file)
 
     def run(self, cargs: list[str]) -> None:
-        """Execute command (in this dummy runner this only captures the outputs)."""
+        """Execute command (in this dry runner this only captures the outputs)."""
         self.last_cargs = cargs
+
+
+def DummyRunner():  # noqa
+    from warnings import warn
+
+    warn(
+        "The DummyRunner alias will be removed in a future version of styxdefs! "
+        "Please use the new name DryRunner."
+    )
+    return DryRunner()
