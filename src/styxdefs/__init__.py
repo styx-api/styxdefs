@@ -1,5 +1,8 @@
 """.. include:: ../../README.md"""  # noqa: D415
 
+from .dry_runner import (
+    DryRunner,
+)
 from .global_state import (
     get_global_runner,
     set_global_runner,
