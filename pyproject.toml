@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "styxdefs"
-version = "0.3.1"
+version = "0.4.0"
 description = "Styx definitions and minimal runtime"
 authors = ["Florian Rupprecht <33600480+nx10@users.noreply.github.com>"]
 license = "MIT License"
@@ -14,8 +14,8 @@ python = ">=3.10"
 pytest = "^8.2.1"
 mypy = "^1.10.0"
 pre-commit = "^4.0.1"
-pytest-cov = ">=5,<7"
-ruff = ">=0.6.9,<0.8.0"
+pytest-cov = "^6.0.0"
+ruff = "^0.8.0"
 
 [tool.poetry.group.docs.dependencies]
 pdoc = "^15.0.0"

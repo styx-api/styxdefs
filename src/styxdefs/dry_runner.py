@@ -1,6 +1,7 @@
 """Dummy runner for debugging purposes."""
 
 import pathlib
+import typing
 
 from .types import Execution, InputPathType, Metadata, OutputPathType, Runner
 
@@ -31,7 +32,12 @@ class DryRunner(Runner, Execution):
         """Resolve output file."""
         return pathlib.Path(local_file)
 
-    def run(self, cargs: list[str]) -> None:
+    def run(
+        self,
+        cargs: list[str],
+        handle_stdout: typing.Callable[[str], None] | None,
+        handle_stderr: typing.Callable[[str], None] | None,
+    ) -> None:
         """Execute command (in this dry runner this only captures the outputs)."""
         self.last_cargs = cargs
 

@@ -38,11 +38,20 @@ class Execution(typing.Protocol):
         """
         ...
 
-    def run(self, cargs: list[str]) -> None:
+    def run(
+        self,
+        cargs: list[str],
+        handle_stdout: typing.Callable[[str], None] | None,
+        handle_stderr: typing.Callable[[str], None] | None,
+    ) -> None:
         """Run the command.
 
         Args:
             cargs: A list of command arguments.
+            handle_stdout: If defined the runner must forward stdout output to this\
+                (may be called multiple times).
+            handle_stderr: If defined the runner must forward stderr output to this\
+                (may be called multiple times).
 
         Note:
             Called after all `Execution.input_file()`
