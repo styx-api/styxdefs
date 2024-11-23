@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "styxdefs"
-version = "0.4.0"
+version = "0.4.1"
 description = "Styx definitions and minimal runtime"
 authors = ["Florian Rupprecht <33600480+nx10@users.noreply.github.com>"]
 license = "MIT License"
