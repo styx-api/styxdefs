@@ -35,8 +35,8 @@ class DryRunner(Runner, Execution):
     def run(
         self,
         cargs: list[str],
-        handle_stdout: typing.Callable[[str], None] | None,
-        handle_stderr: typing.Callable[[str], None] | None,
+        handle_stdout: typing.Callable[[str], None] | None = None,
+        handle_stderr: typing.Callable[[str], None] | None = None,
     ) -> None:
         """Execute command (in this dry runner this only captures the outputs)."""
         self.last_cargs = cargs

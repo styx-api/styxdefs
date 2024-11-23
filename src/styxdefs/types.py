@@ -41,8 +41,8 @@ class Execution(typing.Protocol):
     def run(
         self,
         cargs: list[str],
-        handle_stdout: typing.Callable[[str], None] | None,
-        handle_stderr: typing.Callable[[str], None] | None,
+        handle_stdout: typing.Callable[[str], None] | None = None,
+        handle_stderr: typing.Callable[[str], None] | None = None,
     ) -> None:
         """Run the command.
 
