@@ -290,33 +290,42 @@ Styx Runners. This package defines the common API for all Styx generated code.</
 </span><span id="Execution-39"><a href="#Execution-39"><span class="linenos">39</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="Execution-40"><a href="#Execution-40"><span class="linenos">40</span></a>        <span class="o">...</span>
 </span><span id="Execution-41"><a href="#Execution-41"><span class="linenos">41</span></a>
-</span><span id="Execution-42"><a href="#Execution-42"><span class="linenos">42</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Execution-43"><a href="#Execution-43"><span class="linenos">43</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.</span>
-</span><span id="Execution-44"><a href="#Execution-44"><span class="linenos">44</span></a>
-</span><span id="Execution-45"><a href="#Execution-45"><span class="linenos">45</span></a><span class="sd">        Args:</span>
-</span><span id="Execution-46"><a href="#Execution-46"><span class="linenos">46</span></a><span class="sd">            cargs: A list of command arguments.</span>
-</span><span id="Execution-47"><a href="#Execution-47"><span class="linenos">47</span></a>
-</span><span id="Execution-48"><a href="#Execution-48"><span class="linenos">48</span></a><span class="sd">        Note:</span>
-</span><span id="Execution-49"><a href="#Execution-49"><span class="linenos">49</span></a><span class="sd">            Called after all `Execution.input_file()`</span>
-</span><span id="Execution-50"><a href="#Execution-50"><span class="linenos">50</span></a><span class="sd">            and `Execution.output_file()` calls.</span>
-</span><span id="Execution-51"><a href="#Execution-51"><span class="linenos">51</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Execution-52"><a href="#Execution-52"><span class="linenos">52</span></a>        <span class="o">...</span>
-</span><span id="Execution-53"><a href="#Execution-53"><span class="linenos">53</span></a>
-</span><span id="Execution-54"><a href="#Execution-54"><span class="linenos">54</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
-</span><span id="Execution-55"><a href="#Execution-55"><span class="linenos">55</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.</span>
+</span><span id="Execution-42"><a href="#Execution-42"><span class="linenos">42</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+</span><span id="Execution-43"><a href="#Execution-43"><span class="linenos">43</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Execution-44"><a href="#Execution-44"><span class="linenos">44</span></a>        <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+</span><span id="Execution-45"><a href="#Execution-45"><span class="linenos">45</span></a>        <span class="n">handle_stdout</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Execution-46"><a href="#Execution-46"><span class="linenos">46</span></a>        <span class="n">handle_stderr</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Execution-47"><a href="#Execution-47"><span class="linenos">47</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Execution-48"><a href="#Execution-48"><span class="linenos">48</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.</span>
+</span><span id="Execution-49"><a href="#Execution-49"><span class="linenos">49</span></a>
+</span><span id="Execution-50"><a href="#Execution-50"><span class="linenos">50</span></a><span class="sd">        Args:</span>
+</span><span id="Execution-51"><a href="#Execution-51"><span class="linenos">51</span></a><span class="sd">            cargs: A list of command arguments.</span>
+</span><span id="Execution-52"><a href="#Execution-52"><span class="linenos">52</span></a><span class="sd">            handle_stdout: If defined the runner must forward stdout output to this\</span>
+</span><span id="Execution-53"><a href="#Execution-53"><span class="linenos">53</span></a><span class="sd">                (may be called multiple times).</span>
+</span><span id="Execution-54"><a href="#Execution-54"><span class="linenos">54</span></a><span class="sd">            handle_stderr: If defined the runner must forward stderr output to this\</span>
+</span><span id="Execution-55"><a href="#Execution-55"><span class="linenos">55</span></a><span class="sd">                (may be called multiple times).</span>
 </span><span id="Execution-56"><a href="#Execution-56"><span class="linenos">56</span></a>
-</span><span id="Execution-57"><a href="#Execution-57"><span class="linenos">57</span></a><span class="sd">        Args:</span>
-</span><span id="Execution-58"><a href="#Execution-58"><span class="linenos">58</span></a><span class="sd">            local_file: The local file path.</span>
-</span><span id="Execution-59"><a href="#Execution-59"><span class="linenos">59</span></a><span class="sd">            optional: If True, the output file is optional.</span>
-</span><span id="Execution-60"><a href="#Execution-60"><span class="linenos">60</span></a>
-</span><span id="Execution-61"><a href="#Execution-61"><span class="linenos">61</span></a><span class="sd">        Returns:</span>
-</span><span id="Execution-62"><a href="#Execution-62"><span class="linenos">62</span></a><span class="sd">            OutputPathType: A host filepath.</span>
-</span><span id="Execution-63"><a href="#Execution-63"><span class="linenos">63</span></a>
-</span><span id="Execution-64"><a href="#Execution-64"><span class="linenos">64</span></a><span class="sd">        Note:</span>
-</span><span id="Execution-65"><a href="#Execution-65"><span class="linenos">65</span></a><span class="sd">            Called (potentially multiple times) after all</span>
-</span><span id="Execution-66"><a href="#Execution-66"><span class="linenos">66</span></a><span class="sd">            `Runner.input_file()` calls.</span>
-</span><span id="Execution-67"><a href="#Execution-67"><span class="linenos">67</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Execution-68"><a href="#Execution-68"><span class="linenos">68</span></a>        <span class="o">...</span>
+</span><span id="Execution-57"><a href="#Execution-57"><span class="linenos">57</span></a><span class="sd">        Note:</span>
+</span><span id="Execution-58"><a href="#Execution-58"><span class="linenos">58</span></a><span class="sd">            Called after all `Execution.input_file()`</span>
+</span><span id="Execution-59"><a href="#Execution-59"><span class="linenos">59</span></a><span class="sd">            and `Execution.output_file()` calls.</span>
+</span><span id="Execution-60"><a href="#Execution-60"><span class="linenos">60</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Execution-61"><a href="#Execution-61"><span class="linenos">61</span></a>        <span class="o">...</span>
+</span><span id="Execution-62"><a href="#Execution-62"><span class="linenos">62</span></a>
+</span><span id="Execution-63"><a href="#Execution-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
+</span><span id="Execution-64"><a href="#Execution-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.</span>
+</span><span id="Execution-65"><a href="#Execution-65"><span class="linenos">65</span></a>
+</span><span id="Execution-66"><a href="#Execution-66"><span class="linenos">66</span></a><span class="sd">        Args:</span>
+</span><span id="Execution-67"><a href="#Execution-67"><span class="linenos">67</span></a><span class="sd">            local_file: The local file path.</span>
+</span><span id="Execution-68"><a href="#Execution-68"><span class="linenos">68</span></a><span class="sd">            optional: If True, the output file is optional.</span>
+</span><span id="Execution-69"><a href="#Execution-69"><span class="linenos">69</span></a>
+</span><span id="Execution-70"><a href="#Execution-70"><span class="linenos">70</span></a><span class="sd">        Returns:</span>
+</span><span id="Execution-71"><a href="#Execution-71"><span class="linenos">71</span></a><span class="sd">            OutputPathType: A host filepath.</span>
+</span><span id="Execution-72"><a href="#Execution-72"><span class="linenos">72</span></a>
+</span><span id="Execution-73"><a href="#Execution-73"><span class="linenos">73</span></a><span class="sd">        Note:</span>
+</span><span id="Execution-74"><a href="#Execution-74"><span class="linenos">74</span></a><span class="sd">            Called (potentially multiple times) after all</span>
+</span><span id="Execution-75"><a href="#Execution-75"><span class="linenos">75</span></a><span class="sd">            `Runner.input_file()` calls.</span>
+</span><span id="Execution-76"><a href="#Execution-76"><span class="linenos">76</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Execution-77"><a href="#Execution-77"><span class="linenos">77</span></a>        <span class="o">...</span>
 </span></pre></div>
 
 
@@ -435,23 +444,32 @@ Styx Runners. This package defines the common API for all Styx generated code.</
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">run</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>,</span><span class="param">	<span class="n">handle_stdout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]]</span>,</span><span class="param">	<span class="n">handle_stderr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]]</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
                 <label class="view-source-button" for="Execution.run-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#Execution.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Execution.run-42"><a href="#Execution.run-42"><span class="linenos">42</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Execution.run-43"><a href="#Execution.run-43"><span class="linenos">43</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.</span>
-</span><span id="Execution.run-44"><a href="#Execution.run-44"><span class="linenos">44</span></a>
-</span><span id="Execution.run-45"><a href="#Execution.run-45"><span class="linenos">45</span></a><span class="sd">        Args:</span>
-</span><span id="Execution.run-46"><a href="#Execution.run-46"><span class="linenos">46</span></a><span class="sd">            cargs: A list of command arguments.</span>
-</span><span id="Execution.run-47"><a href="#Execution.run-47"><span class="linenos">47</span></a>
-</span><span id="Execution.run-48"><a href="#Execution.run-48"><span class="linenos">48</span></a><span class="sd">        Note:</span>
-</span><span id="Execution.run-49"><a href="#Execution.run-49"><span class="linenos">49</span></a><span class="sd">            Called after all `Execution.input_file()`</span>
-</span><span id="Execution.run-50"><a href="#Execution.run-50"><span class="linenos">50</span></a><span class="sd">            and `Execution.output_file()` calls.</span>
-</span><span id="Execution.run-51"><a href="#Execution.run-51"><span class="linenos">51</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Execution.run-52"><a href="#Execution.run-52"><span class="linenos">52</span></a>        <span class="o">...</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Execution.run-42"><a href="#Execution.run-42"><span class="linenos">42</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+</span><span id="Execution.run-43"><a href="#Execution.run-43"><span class="linenos">43</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="Execution.run-44"><a href="#Execution.run-44"><span class="linenos">44</span></a>        <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+</span><span id="Execution.run-45"><a href="#Execution.run-45"><span class="linenos">45</span></a>        <span class="n">handle_stdout</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Execution.run-46"><a href="#Execution.run-46"><span class="linenos">46</span></a>        <span class="n">handle_stderr</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="Execution.run-47"><a href="#Execution.run-47"><span class="linenos">47</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Execution.run-48"><a href="#Execution.run-48"><span class="linenos">48</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the command.</span>
+</span><span id="Execution.run-49"><a href="#Execution.run-49"><span class="linenos">49</span></a>
+</span><span id="Execution.run-50"><a href="#Execution.run-50"><span class="linenos">50</span></a><span class="sd">        Args:</span>
+</span><span id="Execution.run-51"><a href="#Execution.run-51"><span class="linenos">51</span></a><span class="sd">            cargs: A list of command arguments.</span>
+</span><span id="Execution.run-52"><a href="#Execution.run-52"><span class="linenos">52</span></a><span class="sd">            handle_stdout: If defined the runner must forward stdout output to this\</span>
+</span><span id="Execution.run-53"><a href="#Execution.run-53"><span class="linenos">53</span></a><span class="sd">                (may be called multiple times).</span>
+</span><span id="Execution.run-54"><a href="#Execution.run-54"><span class="linenos">54</span></a><span class="sd">            handle_stderr: If defined the runner must forward stderr output to this\</span>
+</span><span id="Execution.run-55"><a href="#Execution.run-55"><span class="linenos">55</span></a><span class="sd">                (may be called multiple times).</span>
+</span><span id="Execution.run-56"><a href="#Execution.run-56"><span class="linenos">56</span></a>
+</span><span id="Execution.run-57"><a href="#Execution.run-57"><span class="linenos">57</span></a><span class="sd">        Note:</span>
+</span><span id="Execution.run-58"><a href="#Execution.run-58"><span class="linenos">58</span></a><span class="sd">            Called after all `Execution.input_file()`</span>
+</span><span id="Execution.run-59"><a href="#Execution.run-59"><span class="linenos">59</span></a><span class="sd">            and `Execution.output_file()` calls.</span>
+</span><span id="Execution.run-60"><a href="#Execution.run-60"><span class="linenos">60</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Execution.run-61"><a href="#Execution.run-61"><span class="linenos">61</span></a>        <span class="o">...</span>
 </span></pre></div>
 
 
@@ -461,6 +479,8 @@ Styx Runners. This package defines the common API for all Styx generated code.</
 
 <ul>
 <li><strong>cargs:</strong>  A list of command arguments.</li>
+<li><strong>handle_stdout:</strong>  If defined the runner must forward stdout output to this                (may be called multiple times).</li>
+<li><strong>handle_stderr:</strong>  If defined the runner must forward stderr output to this                (may be called multiple times).</li>
 </ul>
 
 <h6 id="note">Note:</h6>
@@ -484,21 +504,21 @@ Styx Runners. This package defines the common API for all Styx generated code.</
 
     </div>
     <a class="headerlink" href="#Execution.output_file"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Execution.output_file-54"><a href="#Execution.output_file-54"><span class="linenos">54</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
-</span><span id="Execution.output_file-55"><a href="#Execution.output_file-55"><span class="linenos">55</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.</span>
-</span><span id="Execution.output_file-56"><a href="#Execution.output_file-56"><span class="linenos">56</span></a>
-</span><span id="Execution.output_file-57"><a href="#Execution.output_file-57"><span class="linenos">57</span></a><span class="sd">        Args:</span>
-</span><span id="Execution.output_file-58"><a href="#Execution.output_file-58"><span class="linenos">58</span></a><span class="sd">            local_file: The local file path.</span>
-</span><span id="Execution.output_file-59"><a href="#Execution.output_file-59"><span class="linenos">59</span></a><span class="sd">            optional: If True, the output file is optional.</span>
-</span><span id="Execution.output_file-60"><a href="#Execution.output_file-60"><span class="linenos">60</span></a>
-</span><span id="Execution.output_file-61"><a href="#Execution.output_file-61"><span class="linenos">61</span></a><span class="sd">        Returns:</span>
-</span><span id="Execution.output_file-62"><a href="#Execution.output_file-62"><span class="linenos">62</span></a><span class="sd">            OutputPathType: A host filepath.</span>
-</span><span id="Execution.output_file-63"><a href="#Execution.output_file-63"><span class="linenos">63</span></a>
-</span><span id="Execution.output_file-64"><a href="#Execution.output_file-64"><span class="linenos">64</span></a><span class="sd">        Note:</span>
-</span><span id="Execution.output_file-65"><a href="#Execution.output_file-65"><span class="linenos">65</span></a><span class="sd">            Called (potentially multiple times) after all</span>
-</span><span id="Execution.output_file-66"><a href="#Execution.output_file-66"><span class="linenos">66</span></a><span class="sd">            `Runner.input_file()` calls.</span>
-</span><span id="Execution.output_file-67"><a href="#Execution.output_file-67"><span class="linenos">67</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Execution.output_file-68"><a href="#Execution.output_file-68"><span class="linenos">68</span></a>        <span class="o">...</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Execution.output_file-63"><a href="#Execution.output_file-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
+</span><span id="Execution.output_file-64"><a href="#Execution.output_file-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve local output files.</span>
+</span><span id="Execution.output_file-65"><a href="#Execution.output_file-65"><span class="linenos">65</span></a>
+</span><span id="Execution.output_file-66"><a href="#Execution.output_file-66"><span class="linenos">66</span></a><span class="sd">        Args:</span>
+</span><span id="Execution.output_file-67"><a href="#Execution.output_file-67"><span class="linenos">67</span></a><span class="sd">            local_file: The local file path.</span>
+</span><span id="Execution.output_file-68"><a href="#Execution.output_file-68"><span class="linenos">68</span></a><span class="sd">            optional: If True, the output file is optional.</span>
+</span><span id="Execution.output_file-69"><a href="#Execution.output_file-69"><span class="linenos">69</span></a>
+</span><span id="Execution.output_file-70"><a href="#Execution.output_file-70"><span class="linenos">70</span></a><span class="sd">        Returns:</span>
+</span><span id="Execution.output_file-71"><a href="#Execution.output_file-71"><span class="linenos">71</span></a><span class="sd">            OutputPathType: A host filepath.</span>
+</span><span id="Execution.output_file-72"><a href="#Execution.output_file-72"><span class="linenos">72</span></a>
+</span><span id="Execution.output_file-73"><a href="#Execution.output_file-73"><span class="linenos">73</span></a><span class="sd">        Note:</span>
+</span><span id="Execution.output_file-74"><a href="#Execution.output_file-74"><span class="linenos">74</span></a><span class="sd">            Called (potentially multiple times) after all</span>
+</span><span id="Execution.output_file-75"><a href="#Execution.output_file-75"><span class="linenos">75</span></a><span class="sd">            `Runner.input_file()` calls.</span>
+</span><span id="Execution.output_file-76"><a href="#Execution.output_file-76"><span class="linenos">76</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Execution.output_file-77"><a href="#Execution.output_file-77"><span class="linenos">77</span></a>        <span class="o">...</span>
 </span></pre></div>
 
 
@@ -551,25 +571,25 @@ Styx Runners. This package defines the common API for all Styx generated code.</
 
     </div>
     <a class="headerlink" href="#Metadata"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Metadata-71"><a href="#Metadata-71"><span class="linenos">71</span></a><span class="k">class</span> <span class="nc">Metadata</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">NamedTuple</span><span class="p">):</span>
-</span><span id="Metadata-72"><a href="#Metadata-72"><span class="linenos">72</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Static tool metadata.</span>
-</span><span id="Metadata-73"><a href="#Metadata-73"><span class="linenos">73</span></a>
-</span><span id="Metadata-74"><a href="#Metadata-74"><span class="linenos">74</span></a><span class="sd">    This is structured static metadata that is known at compile time.</span>
-</span><span id="Metadata-75"><a href="#Metadata-75"><span class="linenos">75</span></a><span class="sd">    Runners can use this to set up execution environments.</span>
-</span><span id="Metadata-76"><a href="#Metadata-76"><span class="linenos">76</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="Metadata-77"><a href="#Metadata-77"><span class="linenos">77</span></a>
-</span><span id="Metadata-78"><a href="#Metadata-78"><span class="linenos">78</span></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Metadata-79"><a href="#Metadata-79"><span class="linenos">79</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unique identifier of the tool.&quot;&quot;&quot;</span>
-</span><span id="Metadata-80"><a href="#Metadata-80"><span class="linenos">80</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Metadata-81"><a href="#Metadata-81"><span class="linenos">81</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the tool.&quot;&quot;&quot;</span>
-</span><span id="Metadata-82"><a href="#Metadata-82"><span class="linenos">82</span></a>    <span class="n">package</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="Metadata-83"><a href="#Metadata-83"><span class="linenos">83</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the package that provides the tool.&quot;&quot;&quot;</span>
-</span><span id="Metadata-84"><a href="#Metadata-84"><span class="linenos">84</span></a>    <span class="n">citations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="Metadata-85"><a href="#Metadata-85"><span class="linenos">85</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;List of references to cite when using the tool.&quot;&quot;&quot;</span>
-</span><span id="Metadata-86"><a href="#Metadata-86"><span class="linenos">86</span></a>    <span class="n">container_image_tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="Metadata-87"><a href="#Metadata-87"><span class="linenos">87</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of an image where the tool is installed and configured.</span>
-</span><span id="Metadata-88"><a href="#Metadata-88"><span class="linenos">88</span></a><span class="sd">    Example: bids/mriqc.</span>
-</span><span id="Metadata-89"><a href="#Metadata-89"><span class="linenos">89</span></a><span class="sd">    &quot;&quot;&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Metadata-80"><a href="#Metadata-80"><span class="linenos">80</span></a><span class="k">class</span> <span class="nc">Metadata</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">NamedTuple</span><span class="p">):</span>
+</span><span id="Metadata-81"><a href="#Metadata-81"><span class="linenos">81</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Static tool metadata.</span>
+</span><span id="Metadata-82"><a href="#Metadata-82"><span class="linenos">82</span></a>
+</span><span id="Metadata-83"><a href="#Metadata-83"><span class="linenos">83</span></a><span class="sd">    This is structured static metadata that is known at compile time.</span>
+</span><span id="Metadata-84"><a href="#Metadata-84"><span class="linenos">84</span></a><span class="sd">    Runners can use this to set up execution environments.</span>
+</span><span id="Metadata-85"><a href="#Metadata-85"><span class="linenos">85</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="Metadata-86"><a href="#Metadata-86"><span class="linenos">86</span></a>
+</span><span id="Metadata-87"><a href="#Metadata-87"><span class="linenos">87</span></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Metadata-88"><a href="#Metadata-88"><span class="linenos">88</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unique identifier of the tool.&quot;&quot;&quot;</span>
+</span><span id="Metadata-89"><a href="#Metadata-89"><span class="linenos">89</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Metadata-90"><a href="#Metadata-90"><span class="linenos">90</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the tool.&quot;&quot;&quot;</span>
+</span><span id="Metadata-91"><a href="#Metadata-91"><span class="linenos">91</span></a>    <span class="n">package</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="Metadata-92"><a href="#Metadata-92"><span class="linenos">92</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the package that provides the tool.&quot;&quot;&quot;</span>
+</span><span id="Metadata-93"><a href="#Metadata-93"><span class="linenos">93</span></a>    <span class="n">citations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="Metadata-94"><a href="#Metadata-94"><span class="linenos">94</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;List of references to cite when using the tool.&quot;&quot;&quot;</span>
+</span><span id="Metadata-95"><a href="#Metadata-95"><span class="linenos">95</span></a>    <span class="n">container_image_tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="Metadata-96"><a href="#Metadata-96"><span class="linenos">96</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of an image where the tool is installed and configured.</span>
+</span><span id="Metadata-97"><a href="#Metadata-97"><span class="linenos">97</span></a><span class="sd">    Example: bids/mriqc.</span>
+</span><span id="Metadata-98"><a href="#Metadata-98"><span class="linenos">98</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span></pre></div>
 
 
@@ -684,27 +704,27 @@ Example: bids/mriqc.</p>
 
     </div>
     <a class="headerlink" href="#Runner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Runner-92"><a href="#Runner-92"><span class="linenos"> 92</span></a><span class="k">class</span> <span class="nc">Runner</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
-</span><span id="Runner-93"><a href="#Runner-93"><span class="linenos"> 93</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Runner object used to execute commands.</span>
-</span><span id="Runner-94"><a href="#Runner-94"><span class="linenos"> 94</span></a>
-</span><span id="Runner-95"><a href="#Runner-95"><span class="linenos"> 95</span></a><span class="sd">    Possible examples would be `LocalRunner`,</span>
-</span><span id="Runner-96"><a href="#Runner-96"><span class="linenos"> 96</span></a><span class="sd">    `DockerRunner`, `DebugRunner`, ...</span>
-</span><span id="Runner-97"><a href="#Runner-97"><span class="linenos"> 97</span></a><span class="sd">    Used as a factory for `Execution` objects.</span>
-</span><span id="Runner-98"><a href="#Runner-98"><span class="linenos"> 98</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="Runner-99"><a href="#Runner-99"><span class="linenos"> 99</span></a>
-</span><span id="Runner-100"><a href="#Runner-100"><span class="linenos">100</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="Runner-101"><a href="#Runner-101"><span class="linenos">101</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start an execution.</span>
-</span><span id="Runner-102"><a href="#Runner-102"><span class="linenos">102</span></a>
-</span><span id="Runner-103"><a href="#Runner-103"><span class="linenos">103</span></a><span class="sd">        Args:</span>
-</span><span id="Runner-104"><a href="#Runner-104"><span class="linenos">104</span></a><span class="sd">            metadata: Static tool metadata.</span>
-</span><span id="Runner-105"><a href="#Runner-105"><span class="linenos">105</span></a>
-</span><span id="Runner-106"><a href="#Runner-106"><span class="linenos">106</span></a><span class="sd">        Returns:</span>
-</span><span id="Runner-107"><a href="#Runner-107"><span class="linenos">107</span></a><span class="sd">            Execution: An Execution object.</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Runner-101"><a href="#Runner-101"><span class="linenos">101</span></a><span class="k">class</span> <span class="nc">Runner</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
+</span><span id="Runner-102"><a href="#Runner-102"><span class="linenos">102</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Runner object used to execute commands.</span>
+</span><span id="Runner-103"><a href="#Runner-103"><span class="linenos">103</span></a>
+</span><span id="Runner-104"><a href="#Runner-104"><span class="linenos">104</span></a><span class="sd">    Possible examples would be `LocalRunner`,</span>
+</span><span id="Runner-105"><a href="#Runner-105"><span class="linenos">105</span></a><span class="sd">    `DockerRunner`, `DebugRunner`, ...</span>
+</span><span id="Runner-106"><a href="#Runner-106"><span class="linenos">106</span></a><span class="sd">    Used as a factory for `Execution` objects.</span>
+</span><span id="Runner-107"><a href="#Runner-107"><span class="linenos">107</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="Runner-108"><a href="#Runner-108"><span class="linenos">108</span></a>
-</span><span id="Runner-109"><a href="#Runner-109"><span class="linenos">109</span></a><span class="sd">        Note:</span>
-</span><span id="Runner-110"><a href="#Runner-110"><span class="linenos">110</span></a><span class="sd">            Called before any `Execution.input_file()` calls.</span>
-</span><span id="Runner-111"><a href="#Runner-111"><span class="linenos">111</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Runner-112"><a href="#Runner-112"><span class="linenos">112</span></a>        <span class="o">...</span>
+</span><span id="Runner-109"><a href="#Runner-109"><span class="linenos">109</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="Runner-110"><a href="#Runner-110"><span class="linenos">110</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start an execution.</span>
+</span><span id="Runner-111"><a href="#Runner-111"><span class="linenos">111</span></a>
+</span><span id="Runner-112"><a href="#Runner-112"><span class="linenos">112</span></a><span class="sd">        Args:</span>
+</span><span id="Runner-113"><a href="#Runner-113"><span class="linenos">113</span></a><span class="sd">            metadata: Static tool metadata.</span>
+</span><span id="Runner-114"><a href="#Runner-114"><span class="linenos">114</span></a>
+</span><span id="Runner-115"><a href="#Runner-115"><span class="linenos">115</span></a><span class="sd">        Returns:</span>
+</span><span id="Runner-116"><a href="#Runner-116"><span class="linenos">116</span></a><span class="sd">            Execution: An Execution object.</span>
+</span><span id="Runner-117"><a href="#Runner-117"><span class="linenos">117</span></a>
+</span><span id="Runner-118"><a href="#Runner-118"><span class="linenos">118</span></a><span class="sd">        Note:</span>
+</span><span id="Runner-119"><a href="#Runner-119"><span class="linenos">119</span></a><span class="sd">            Called before any `Execution.input_file()` calls.</span>
+</span><span id="Runner-120"><a href="#Runner-120"><span class="linenos">120</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Runner-121"><a href="#Runner-121"><span class="linenos">121</span></a>        <span class="o">...</span>
 </span></pre></div>
 
 
@@ -770,19 +790,19 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#Runner.start_execution"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Runner.start_execution-100"><a href="#Runner.start_execution-100"><span class="linenos">100</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="Runner.start_execution-101"><a href="#Runner.start_execution-101"><span class="linenos">101</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start an execution.</span>
-</span><span id="Runner.start_execution-102"><a href="#Runner.start_execution-102"><span class="linenos">102</span></a>
-</span><span id="Runner.start_execution-103"><a href="#Runner.start_execution-103"><span class="linenos">103</span></a><span class="sd">        Args:</span>
-</span><span id="Runner.start_execution-104"><a href="#Runner.start_execution-104"><span class="linenos">104</span></a><span class="sd">            metadata: Static tool metadata.</span>
-</span><span id="Runner.start_execution-105"><a href="#Runner.start_execution-105"><span class="linenos">105</span></a>
-</span><span id="Runner.start_execution-106"><a href="#Runner.start_execution-106"><span class="linenos">106</span></a><span class="sd">        Returns:</span>
-</span><span id="Runner.start_execution-107"><a href="#Runner.start_execution-107"><span class="linenos">107</span></a><span class="sd">            Execution: An Execution object.</span>
-</span><span id="Runner.start_execution-108"><a href="#Runner.start_execution-108"><span class="linenos">108</span></a>
-</span><span id="Runner.start_execution-109"><a href="#Runner.start_execution-109"><span class="linenos">109</span></a><span class="sd">        Note:</span>
-</span><span id="Runner.start_execution-110"><a href="#Runner.start_execution-110"><span class="linenos">110</span></a><span class="sd">            Called before any `Execution.input_file()` calls.</span>
-</span><span id="Runner.start_execution-111"><a href="#Runner.start_execution-111"><span class="linenos">111</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Runner.start_execution-112"><a href="#Runner.start_execution-112"><span class="linenos">112</span></a>        <span class="o">...</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Runner.start_execution-109"><a href="#Runner.start_execution-109"><span class="linenos">109</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="Runner.start_execution-110"><a href="#Runner.start_execution-110"><span class="linenos">110</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start an execution.</span>
+</span><span id="Runner.start_execution-111"><a href="#Runner.start_execution-111"><span class="linenos">111</span></a>
+</span><span id="Runner.start_execution-112"><a href="#Runner.start_execution-112"><span class="linenos">112</span></a><span class="sd">        Args:</span>
+</span><span id="Runner.start_execution-113"><a href="#Runner.start_execution-113"><span class="linenos">113</span></a><span class="sd">            metadata: Static tool metadata.</span>
+</span><span id="Runner.start_execution-114"><a href="#Runner.start_execution-114"><span class="linenos">114</span></a>
+</span><span id="Runner.start_execution-115"><a href="#Runner.start_execution-115"><span class="linenos">115</span></a><span class="sd">        Returns:</span>
+</span><span id="Runner.start_execution-116"><a href="#Runner.start_execution-116"><span class="linenos">116</span></a><span class="sd">            Execution: An Execution object.</span>
+</span><span id="Runner.start_execution-117"><a href="#Runner.start_execution-117"><span class="linenos">117</span></a>
+</span><span id="Runner.start_execution-118"><a href="#Runner.start_execution-118"><span class="linenos">118</span></a><span class="sd">        Note:</span>
+</span><span id="Runner.start_execution-119"><a href="#Runner.start_execution-119"><span class="linenos">119</span></a><span class="sd">            Called before any `Execution.input_file()` calls.</span>
+</span><span id="Runner.start_execution-120"><a href="#Runner.start_execution-120"><span class="linenos">120</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Runner.start_execution-121"><a href="#Runner.start_execution-121"><span class="linenos">121</span></a>        <span class="o">...</span>
 </span></pre></div>
 
 
@@ -821,44 +841,44 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#LocalRunner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LocalRunner-90"><a href="#LocalRunner-90"><span class="linenos"> 90</span></a><span class="k">class</span> <span class="nc">LocalRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
-</span><span id="LocalRunner-91"><a href="#LocalRunner-91"><span class="linenos"> 91</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Local runner implementation.&quot;&quot;&quot;</span>
-</span><span id="LocalRunner-92"><a href="#LocalRunner-92"><span class="linenos"> 92</span></a>
-</span><span id="LocalRunner-93"><a href="#LocalRunner-93"><span class="linenos"> 93</span></a>    <span class="n">logger_name</span> <span class="o">=</span> <span class="s2">&quot;styx_local_runner&quot;</span>
-</span><span id="LocalRunner-94"><a href="#LocalRunner-94"><span class="linenos"> 94</span></a>
-</span><span id="LocalRunner-95"><a href="#LocalRunner-95"><span class="linenos"> 95</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-</span><span id="LocalRunner-96"><a href="#LocalRunner-96"><span class="linenos"> 96</span></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="LocalRunner-97"><a href="#LocalRunner-97"><span class="linenos"> 97</span></a>        <span class="n">data_dir</span><span class="p">:</span> <span class="n">InputPathType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="LocalRunner-98"><a href="#LocalRunner-98"><span class="linenos"> 98</span></a>        <span class="n">environ</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="LocalRunner-99"><a href="#LocalRunner-99"><span class="linenos"> 99</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="LocalRunner-100"><a href="#LocalRunner-100"><span class="linenos">100</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
-</span><span id="LocalRunner-101"><a href="#LocalRunner-101"><span class="linenos">101</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">data_dir</span> <span class="ow">or</span> <span class="s2">&quot;styx_tmp&quot;</span><span class="p">)</span>
-</span><span id="LocalRunner-102"><a href="#LocalRunner-102"><span class="linenos">102</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
-</span><span id="LocalRunner-103"><a href="#LocalRunner-103"><span class="linenos">103</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="LocalRunner-104"><a href="#LocalRunner-104"><span class="linenos">104</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">environ</span> <span class="o">=</span> <span class="n">environ</span>
-</span><span id="LocalRunner-105"><a href="#LocalRunner-105"><span class="linenos">105</span></a>
-</span><span id="LocalRunner-106"><a href="#LocalRunner-106"><span class="linenos">106</span></a>        <span class="c1"># Configure logger</span>
-</span><span id="LocalRunner-107"><a href="#LocalRunner-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger_name</span><span class="p">)</span>
-</span><span id="LocalRunner-108"><a href="#LocalRunner-108"><span class="linenos">108</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
-</span><span id="LocalRunner-109"><a href="#LocalRunner-109"><span class="linenos">109</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-</span><span id="LocalRunner-110"><a href="#LocalRunner-110"><span class="linenos">110</span></a>            <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-</span><span id="LocalRunner-111"><a href="#LocalRunner-111"><span class="linenos">111</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-</span><span id="LocalRunner-112"><a href="#LocalRunner-112"><span class="linenos">112</span></a>            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(levelname).1s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="LocalRunner-113"><a href="#LocalRunner-113"><span class="linenos">113</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
-</span><span id="LocalRunner-114"><a href="#LocalRunner-114"><span class="linenos">114</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
-</span><span id="LocalRunner-115"><a href="#LocalRunner-115"><span class="linenos">115</span></a>
-</span><span id="LocalRunner-116"><a href="#LocalRunner-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="LocalRunner-117"><a href="#LocalRunner-117"><span class="linenos">117</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
-</span><span id="LocalRunner-118"><a href="#LocalRunner-118"><span class="linenos">118</span></a>        <span class="n">output_dir</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="LocalRunner-119"><a href="#LocalRunner-119"><span class="linenos">119</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="LocalRunner-120"><a href="#LocalRunner-120"><span class="linenos">120</span></a>        <span class="p">)</span>
-</span><span id="LocalRunner-121"><a href="#LocalRunner-121"><span class="linenos">121</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="LocalRunner-122"><a href="#LocalRunner-122"><span class="linenos">122</span></a>        <span class="k">return</span> <span class="n">_LocalExecution</span><span class="p">(</span>
-</span><span id="LocalRunner-123"><a href="#LocalRunner-123"><span class="linenos">123</span></a>            <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
-</span><span id="LocalRunner-124"><a href="#LocalRunner-124"><span class="linenos">124</span></a>            <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
-</span><span id="LocalRunner-125"><a href="#LocalRunner-125"><span class="linenos">125</span></a>            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
-</span><span id="LocalRunner-126"><a href="#LocalRunner-126"><span class="linenos">126</span></a>            <span class="n">environ</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LocalRunner-97"><a href="#LocalRunner-97"><span class="linenos"> 97</span></a><span class="k">class</span> <span class="nc">LocalRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">):</span>
+</span><span id="LocalRunner-98"><a href="#LocalRunner-98"><span class="linenos"> 98</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Local runner implementation.&quot;&quot;&quot;</span>
+</span><span id="LocalRunner-99"><a href="#LocalRunner-99"><span class="linenos"> 99</span></a>
+</span><span id="LocalRunner-100"><a href="#LocalRunner-100"><span class="linenos">100</span></a>    <span class="n">logger_name</span> <span class="o">=</span> <span class="s2">&quot;styx_local_runner&quot;</span>
+</span><span id="LocalRunner-101"><a href="#LocalRunner-101"><span class="linenos">101</span></a>
+</span><span id="LocalRunner-102"><a href="#LocalRunner-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="LocalRunner-103"><a href="#LocalRunner-103"><span class="linenos">103</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="LocalRunner-104"><a href="#LocalRunner-104"><span class="linenos">104</span></a>        <span class="n">data_dir</span><span class="p">:</span> <span class="n">InputPathType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="LocalRunner-105"><a href="#LocalRunner-105"><span class="linenos">105</span></a>        <span class="n">environ</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="LocalRunner-106"><a href="#LocalRunner-106"><span class="linenos">106</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="LocalRunner-107"><a href="#LocalRunner-107"><span class="linenos">107</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
+</span><span id="LocalRunner-108"><a href="#LocalRunner-108"><span class="linenos">108</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">data_dir</span> <span class="ow">or</span> <span class="s2">&quot;styx_tmp&quot;</span><span class="p">)</span>
+</span><span id="LocalRunner-109"><a href="#LocalRunner-109"><span class="linenos">109</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+</span><span id="LocalRunner-110"><a href="#LocalRunner-110"><span class="linenos">110</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="LocalRunner-111"><a href="#LocalRunner-111"><span class="linenos">111</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">environ</span> <span class="o">=</span> <span class="n">environ</span>
+</span><span id="LocalRunner-112"><a href="#LocalRunner-112"><span class="linenos">112</span></a>
+</span><span id="LocalRunner-113"><a href="#LocalRunner-113"><span class="linenos">113</span></a>        <span class="c1"># Configure logger</span>
+</span><span id="LocalRunner-114"><a href="#LocalRunner-114"><span class="linenos">114</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger_name</span><span class="p">)</span>
+</span><span id="LocalRunner-115"><a href="#LocalRunner-115"><span class="linenos">115</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
+</span><span id="LocalRunner-116"><a href="#LocalRunner-116"><span class="linenos">116</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="LocalRunner-117"><a href="#LocalRunner-117"><span class="linenos">117</span></a>            <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+</span><span id="LocalRunner-118"><a href="#LocalRunner-118"><span class="linenos">118</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="LocalRunner-119"><a href="#LocalRunner-119"><span class="linenos">119</span></a>            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(levelname).1s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="LocalRunner-120"><a href="#LocalRunner-120"><span class="linenos">120</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span><span id="LocalRunner-121"><a href="#LocalRunner-121"><span class="linenos">121</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+</span><span id="LocalRunner-122"><a href="#LocalRunner-122"><span class="linenos">122</span></a>
+</span><span id="LocalRunner-123"><a href="#LocalRunner-123"><span class="linenos">123</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="LocalRunner-124"><a href="#LocalRunner-124"><span class="linenos">124</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
+</span><span id="LocalRunner-125"><a href="#LocalRunner-125"><span class="linenos">125</span></a>        <span class="n">output_dir</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="LocalRunner-126"><a href="#LocalRunner-126"><span class="linenos">126</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
 </span><span id="LocalRunner-127"><a href="#LocalRunner-127"><span class="linenos">127</span></a>        <span class="p">)</span>
+</span><span id="LocalRunner-128"><a href="#LocalRunner-128"><span class="linenos">128</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="LocalRunner-129"><a href="#LocalRunner-129"><span class="linenos">129</span></a>        <span class="k">return</span> <span class="n">_LocalExecution</span><span class="p">(</span>
+</span><span id="LocalRunner-130"><a href="#LocalRunner-130"><span class="linenos">130</span></a>            <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
+</span><span id="LocalRunner-131"><a href="#LocalRunner-131"><span class="linenos">131</span></a>            <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
+</span><span id="LocalRunner-132"><a href="#LocalRunner-132"><span class="linenos">132</span></a>            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
+</span><span id="LocalRunner-133"><a href="#LocalRunner-133"><span class="linenos">133</span></a>            <span class="n">environ</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span>
+</span><span id="LocalRunner-134"><a href="#LocalRunner-134"><span class="linenos">134</span></a>        <span class="p">)</span>
 </span></pre></div>
 
 
@@ -876,26 +896,26 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#LocalRunner.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LocalRunner.__init__-95"><a href="#LocalRunner.__init__-95"><span class="linenos"> 95</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-</span><span id="LocalRunner.__init__-96"><a href="#LocalRunner.__init__-96"><span class="linenos"> 96</span></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="LocalRunner.__init__-97"><a href="#LocalRunner.__init__-97"><span class="linenos"> 97</span></a>        <span class="n">data_dir</span><span class="p">:</span> <span class="n">InputPathType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="LocalRunner.__init__-98"><a href="#LocalRunner.__init__-98"><span class="linenos"> 98</span></a>        <span class="n">environ</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="LocalRunner.__init__-99"><a href="#LocalRunner.__init__-99"><span class="linenos"> 99</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="LocalRunner.__init__-100"><a href="#LocalRunner.__init__-100"><span class="linenos">100</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
-</span><span id="LocalRunner.__init__-101"><a href="#LocalRunner.__init__-101"><span class="linenos">101</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">data_dir</span> <span class="ow">or</span> <span class="s2">&quot;styx_tmp&quot;</span><span class="p">)</span>
-</span><span id="LocalRunner.__init__-102"><a href="#LocalRunner.__init__-102"><span class="linenos">102</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
-</span><span id="LocalRunner.__init__-103"><a href="#LocalRunner.__init__-103"><span class="linenos">103</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="LocalRunner.__init__-104"><a href="#LocalRunner.__init__-104"><span class="linenos">104</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">environ</span> <span class="o">=</span> <span class="n">environ</span>
-</span><span id="LocalRunner.__init__-105"><a href="#LocalRunner.__init__-105"><span class="linenos">105</span></a>
-</span><span id="LocalRunner.__init__-106"><a href="#LocalRunner.__init__-106"><span class="linenos">106</span></a>        <span class="c1"># Configure logger</span>
-</span><span id="LocalRunner.__init__-107"><a href="#LocalRunner.__init__-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger_name</span><span class="p">)</span>
-</span><span id="LocalRunner.__init__-108"><a href="#LocalRunner.__init__-108"><span class="linenos">108</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
-</span><span id="LocalRunner.__init__-109"><a href="#LocalRunner.__init__-109"><span class="linenos">109</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-</span><span id="LocalRunner.__init__-110"><a href="#LocalRunner.__init__-110"><span class="linenos">110</span></a>            <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-</span><span id="LocalRunner.__init__-111"><a href="#LocalRunner.__init__-111"><span class="linenos">111</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-</span><span id="LocalRunner.__init__-112"><a href="#LocalRunner.__init__-112"><span class="linenos">112</span></a>            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(levelname).1s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="LocalRunner.__init__-113"><a href="#LocalRunner.__init__-113"><span class="linenos">113</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
-</span><span id="LocalRunner.__init__-114"><a href="#LocalRunner.__init__-114"><span class="linenos">114</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LocalRunner.__init__-102"><a href="#LocalRunner.__init__-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="LocalRunner.__init__-103"><a href="#LocalRunner.__init__-103"><span class="linenos">103</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="LocalRunner.__init__-104"><a href="#LocalRunner.__init__-104"><span class="linenos">104</span></a>        <span class="n">data_dir</span><span class="p">:</span> <span class="n">InputPathType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="LocalRunner.__init__-105"><a href="#LocalRunner.__init__-105"><span class="linenos">105</span></a>        <span class="n">environ</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="LocalRunner.__init__-106"><a href="#LocalRunner.__init__-106"><span class="linenos">106</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="LocalRunner.__init__-107"><a href="#LocalRunner.__init__-107"><span class="linenos">107</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the runner.&quot;&quot;&quot;</span>
+</span><span id="LocalRunner.__init__-108"><a href="#LocalRunner.__init__-108"><span class="linenos">108</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">data_dir</span> <span class="ow">or</span> <span class="s2">&quot;styx_tmp&quot;</span><span class="p">)</span>
+</span><span id="LocalRunner.__init__-109"><a href="#LocalRunner.__init__-109"><span class="linenos">109</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+</span><span id="LocalRunner.__init__-110"><a href="#LocalRunner.__init__-110"><span class="linenos">110</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="LocalRunner.__init__-111"><a href="#LocalRunner.__init__-111"><span class="linenos">111</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">environ</span> <span class="o">=</span> <span class="n">environ</span>
+</span><span id="LocalRunner.__init__-112"><a href="#LocalRunner.__init__-112"><span class="linenos">112</span></a>
+</span><span id="LocalRunner.__init__-113"><a href="#LocalRunner.__init__-113"><span class="linenos">113</span></a>        <span class="c1"># Configure logger</span>
+</span><span id="LocalRunner.__init__-114"><a href="#LocalRunner.__init__-114"><span class="linenos">114</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger_name</span><span class="p">)</span>
+</span><span id="LocalRunner.__init__-115"><a href="#LocalRunner.__init__-115"><span class="linenos">115</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
+</span><span id="LocalRunner.__init__-116"><a href="#LocalRunner.__init__-116"><span class="linenos">116</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="LocalRunner.__init__-117"><a href="#LocalRunner.__init__-117"><span class="linenos">117</span></a>            <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+</span><span id="LocalRunner.__init__-118"><a href="#LocalRunner.__init__-118"><span class="linenos">118</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="LocalRunner.__init__-119"><a href="#LocalRunner.__init__-119"><span class="linenos">119</span></a>            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(levelname).1s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="LocalRunner.__init__-120"><a href="#LocalRunner.__init__-120"><span class="linenos">120</span></a>            <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span><span id="LocalRunner.__init__-121"><a href="#LocalRunner.__init__-121"><span class="linenos">121</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -982,18 +1002,18 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#LocalRunner.start_execution"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LocalRunner.start_execution-116"><a href="#LocalRunner.start_execution-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="LocalRunner.start_execution-117"><a href="#LocalRunner.start_execution-117"><span class="linenos">117</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
-</span><span id="LocalRunner.start_execution-118"><a href="#LocalRunner.start_execution-118"><span class="linenos">118</span></a>        <span class="n">output_dir</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="LocalRunner.start_execution-119"><a href="#LocalRunner.start_execution-119"><span class="linenos">119</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="LocalRunner.start_execution-120"><a href="#LocalRunner.start_execution-120"><span class="linenos">120</span></a>        <span class="p">)</span>
-</span><span id="LocalRunner.start_execution-121"><a href="#LocalRunner.start_execution-121"><span class="linenos">121</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="LocalRunner.start_execution-122"><a href="#LocalRunner.start_execution-122"><span class="linenos">122</span></a>        <span class="k">return</span> <span class="n">_LocalExecution</span><span class="p">(</span>
-</span><span id="LocalRunner.start_execution-123"><a href="#LocalRunner.start_execution-123"><span class="linenos">123</span></a>            <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
-</span><span id="LocalRunner.start_execution-124"><a href="#LocalRunner.start_execution-124"><span class="linenos">124</span></a>            <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
-</span><span id="LocalRunner.start_execution-125"><a href="#LocalRunner.start_execution-125"><span class="linenos">125</span></a>            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
-</span><span id="LocalRunner.start_execution-126"><a href="#LocalRunner.start_execution-126"><span class="linenos">126</span></a>            <span class="n">environ</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LocalRunner.start_execution-123"><a href="#LocalRunner.start_execution-123"><span class="linenos">123</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="LocalRunner.start_execution-124"><a href="#LocalRunner.start_execution-124"><span class="linenos">124</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start a new execution.&quot;&quot;&quot;</span>
+</span><span id="LocalRunner.start_execution-125"><a href="#LocalRunner.start_execution-125"><span class="linenos">125</span></a>        <span class="n">output_dir</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="LocalRunner.start_execution-126"><a href="#LocalRunner.start_execution-126"><span class="linenos">126</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
 </span><span id="LocalRunner.start_execution-127"><a href="#LocalRunner.start_execution-127"><span class="linenos">127</span></a>        <span class="p">)</span>
+</span><span id="LocalRunner.start_execution-128"><a href="#LocalRunner.start_execution-128"><span class="linenos">128</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">execution_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="LocalRunner.start_execution-129"><a href="#LocalRunner.start_execution-129"><span class="linenos">129</span></a>        <span class="k">return</span> <span class="n">_LocalExecution</span><span class="p">(</span>
+</span><span id="LocalRunner.start_execution-130"><a href="#LocalRunner.start_execution-130"><span class="linenos">130</span></a>            <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
+</span><span id="LocalRunner.start_execution-131"><a href="#LocalRunner.start_execution-131"><span class="linenos">131</span></a>            <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
+</span><span id="LocalRunner.start_execution-132"><a href="#LocalRunner.start_execution-132"><span class="linenos">132</span></a>            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span>
+</span><span id="LocalRunner.start_execution-133"><a href="#LocalRunner.start_execution-133"><span class="linenos">133</span></a>            <span class="n">environ</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span>
+</span><span id="LocalRunner.start_execution-134"><a href="#LocalRunner.start_execution-134"><span class="linenos">134</span></a>        <span class="p">)</span>
 </span></pre></div>
 
 
@@ -1014,35 +1034,40 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DryRunner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner-9"><a href="#DryRunner-9"><span class="linenos"> 9</span></a><span class="k">class</span> <span class="nc">DryRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">,</span> <span class="n">Execution</span><span class="p">):</span>
-</span><span id="DryRunner-10"><a href="#DryRunner-10"><span class="linenos">10</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Dry runner for debugging purposes.&quot;&quot;&quot;</span>
-</span><span id="DryRunner-11"><a href="#DryRunner-11"><span class="linenos">11</span></a>
-</span><span id="DryRunner-12"><a href="#DryRunner-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DryRunner-13"><a href="#DryRunner-13"><span class="linenos">13</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new dry runner.&quot;&quot;&quot;</span>
-</span><span id="DryRunner-14"><a href="#DryRunner-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="DryRunner-15"><a href="#DryRunner-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="DryRunner-16"><a href="#DryRunner-16"><span class="linenos">16</span></a>
-</span><span id="DryRunner-17"><a href="#DryRunner-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="DryRunner-18"><a href="#DryRunner-18"><span class="linenos">18</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start execution.&quot;&quot;&quot;</span>
-</span><span id="DryRunner-19"><a href="#DryRunner-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-</span><span id="DryRunner-20"><a href="#DryRunner-20"><span class="linenos">20</span></a>        <span class="k">return</span> <span class="bp">self</span>
-</span><span id="DryRunner-21"><a href="#DryRunner-21"><span class="linenos">21</span></a>
-</span><span id="DryRunner-22"><a href="#DryRunner-22"><span class="linenos">22</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span>
-</span><span id="DryRunner-23"><a href="#DryRunner-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="DryRunner-24"><a href="#DryRunner-24"><span class="linenos">24</span></a>        <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">,</span>
-</span><span id="DryRunner-25"><a href="#DryRunner-25"><span class="linenos">25</span></a>        <span class="n">resolve_parent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="DryRunner-26"><a href="#DryRunner-26"><span class="linenos">26</span></a>        <span class="n">mutable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="DryRunner-27"><a href="#DryRunner-27"><span class="linenos">27</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="DryRunner-28"><a href="#DryRunner-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve input file.&quot;&quot;&quot;</span>
-</span><span id="DryRunner-29"><a href="#DryRunner-29"><span class="linenos">29</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
-</span><span id="DryRunner-30"><a href="#DryRunner-30"><span class="linenos">30</span></a>
-</span><span id="DryRunner-31"><a href="#DryRunner-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
-</span><span id="DryRunner-32"><a href="#DryRunner-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve output file.&quot;&quot;&quot;</span>
-</span><span id="DryRunner-33"><a href="#DryRunner-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">local_file</span><span class="p">)</span>
-</span><span id="DryRunner-34"><a href="#DryRunner-34"><span class="linenos">34</span></a>
-</span><span id="DryRunner-35"><a href="#DryRunner-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DryRunner-36"><a href="#DryRunner-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute command (in this dry runner this only captures the outputs).&quot;&quot;&quot;</span>
-</span><span id="DryRunner-37"><a href="#DryRunner-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner-10"><a href="#DryRunner-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">DryRunner</span><span class="p">(</span><span class="n">Runner</span><span class="p">,</span> <span class="n">Execution</span><span class="p">):</span>
+</span><span id="DryRunner-11"><a href="#DryRunner-11"><span class="linenos">11</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Dry runner for debugging purposes.&quot;&quot;&quot;</span>
+</span><span id="DryRunner-12"><a href="#DryRunner-12"><span class="linenos">12</span></a>
+</span><span id="DryRunner-13"><a href="#DryRunner-13"><span class="linenos">13</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DryRunner-14"><a href="#DryRunner-14"><span class="linenos">14</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new dry runner.&quot;&quot;&quot;</span>
+</span><span id="DryRunner-15"><a href="#DryRunner-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DryRunner-16"><a href="#DryRunner-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DryRunner-17"><a href="#DryRunner-17"><span class="linenos">17</span></a>
+</span><span id="DryRunner-18"><a href="#DryRunner-18"><span class="linenos">18</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="DryRunner-19"><a href="#DryRunner-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start execution.&quot;&quot;&quot;</span>
+</span><span id="DryRunner-20"><a href="#DryRunner-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+</span><span id="DryRunner-21"><a href="#DryRunner-21"><span class="linenos">21</span></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="DryRunner-22"><a href="#DryRunner-22"><span class="linenos">22</span></a>
+</span><span id="DryRunner-23"><a href="#DryRunner-23"><span class="linenos">23</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span>
+</span><span id="DryRunner-24"><a href="#DryRunner-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="DryRunner-25"><a href="#DryRunner-25"><span class="linenos">25</span></a>        <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">,</span>
+</span><span id="DryRunner-26"><a href="#DryRunner-26"><span class="linenos">26</span></a>        <span class="n">resolve_parent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="DryRunner-27"><a href="#DryRunner-27"><span class="linenos">27</span></a>        <span class="n">mutable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="DryRunner-28"><a href="#DryRunner-28"><span class="linenos">28</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="DryRunner-29"><a href="#DryRunner-29"><span class="linenos">29</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve input file.&quot;&quot;&quot;</span>
+</span><span id="DryRunner-30"><a href="#DryRunner-30"><span class="linenos">30</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
+</span><span id="DryRunner-31"><a href="#DryRunner-31"><span class="linenos">31</span></a>
+</span><span id="DryRunner-32"><a href="#DryRunner-32"><span class="linenos">32</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
+</span><span id="DryRunner-33"><a href="#DryRunner-33"><span class="linenos">33</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve output file.&quot;&quot;&quot;</span>
+</span><span id="DryRunner-34"><a href="#DryRunner-34"><span class="linenos">34</span></a>        <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">local_file</span><span class="p">)</span>
+</span><span id="DryRunner-35"><a href="#DryRunner-35"><span class="linenos">35</span></a>
+</span><span id="DryRunner-36"><a href="#DryRunner-36"><span class="linenos">36</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+</span><span id="DryRunner-37"><a href="#DryRunner-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="DryRunner-38"><a href="#DryRunner-38"><span class="linenos">38</span></a>        <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+</span><span id="DryRunner-39"><a href="#DryRunner-39"><span class="linenos">39</span></a>        <span class="n">handle_stdout</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="DryRunner-40"><a href="#DryRunner-40"><span class="linenos">40</span></a>        <span class="n">handle_stderr</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="DryRunner-41"><a href="#DryRunner-41"><span class="linenos">41</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DryRunner-42"><a href="#DryRunner-42"><span class="linenos">42</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute command (in this dry runner this only captures the outputs).&quot;&quot;&quot;</span>
+</span><span id="DryRunner-43"><a href="#DryRunner-43"><span class="linenos">43</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
 </span></pre></div>
 
 
@@ -1060,10 +1085,10 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DryRunner.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.__init__-12"><a href="#DryRunner.__init__-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DryRunner.__init__-13"><a href="#DryRunner.__init__-13"><span class="linenos">13</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new dry runner.&quot;&quot;&quot;</span>
-</span><span id="DryRunner.__init__-14"><a href="#DryRunner.__init__-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="DryRunner.__init__-15"><a href="#DryRunner.__init__-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.__init__-13"><a href="#DryRunner.__init__-13"><span class="linenos">13</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DryRunner.__init__-14"><a href="#DryRunner.__init__-14"><span class="linenos">14</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new dry runner.&quot;&quot;&quot;</span>
+</span><span id="DryRunner.__init__-15"><a href="#DryRunner.__init__-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="DryRunner.__init__-16"><a href="#DryRunner.__init__-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span><span class="p">:</span> <span class="n">Metadata</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 </span></pre></div>
 
 
@@ -1105,10 +1130,10 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DryRunner.start_execution"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.start_execution-17"><a href="#DryRunner.start_execution-17"><span class="linenos">17</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
-</span><span id="DryRunner.start_execution-18"><a href="#DryRunner.start_execution-18"><span class="linenos">18</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start execution.&quot;&quot;&quot;</span>
-</span><span id="DryRunner.start_execution-19"><a href="#DryRunner.start_execution-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-</span><span id="DryRunner.start_execution-20"><a href="#DryRunner.start_execution-20"><span class="linenos">20</span></a>        <span class="k">return</span> <span class="bp">self</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.start_execution-18"><a href="#DryRunner.start_execution-18"><span class="linenos">18</span></a>    <span class="k">def</span> <span class="nf">start_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Metadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Execution</span><span class="p">:</span>
+</span><span id="DryRunner.start_execution-19"><a href="#DryRunner.start_execution-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Start execution.&quot;&quot;&quot;</span>
+</span><span id="DryRunner.start_execution-20"><a href="#DryRunner.start_execution-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+</span><span id="DryRunner.start_execution-21"><a href="#DryRunner.start_execution-21"><span class="linenos">21</span></a>        <span class="k">return</span> <span class="bp">self</span>
 </span></pre></div>
 
 
@@ -1128,14 +1153,14 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DryRunner.input_file"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.input_file-22"><a href="#DryRunner.input_file-22"><span class="linenos">22</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span>
-</span><span id="DryRunner.input_file-23"><a href="#DryRunner.input_file-23"><span class="linenos">23</span></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="DryRunner.input_file-24"><a href="#DryRunner.input_file-24"><span class="linenos">24</span></a>        <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">,</span>
-</span><span id="DryRunner.input_file-25"><a href="#DryRunner.input_file-25"><span class="linenos">25</span></a>        <span class="n">resolve_parent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="DryRunner.input_file-26"><a href="#DryRunner.input_file-26"><span class="linenos">26</span></a>        <span class="n">mutable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="DryRunner.input_file-27"><a href="#DryRunner.input_file-27"><span class="linenos">27</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="DryRunner.input_file-28"><a href="#DryRunner.input_file-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve input file.&quot;&quot;&quot;</span>
-</span><span id="DryRunner.input_file-29"><a href="#DryRunner.input_file-29"><span class="linenos">29</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.input_file-23"><a href="#DryRunner.input_file-23"><span class="linenos">23</span></a>    <span class="k">def</span> <span class="nf">input_file</span><span class="p">(</span>
+</span><span id="DryRunner.input_file-24"><a href="#DryRunner.input_file-24"><span class="linenos">24</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="DryRunner.input_file-25"><a href="#DryRunner.input_file-25"><span class="linenos">25</span></a>        <span class="n">host_file</span><span class="p">:</span> <span class="n">InputPathType</span><span class="p">,</span>
+</span><span id="DryRunner.input_file-26"><a href="#DryRunner.input_file-26"><span class="linenos">26</span></a>        <span class="n">resolve_parent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="DryRunner.input_file-27"><a href="#DryRunner.input_file-27"><span class="linenos">27</span></a>        <span class="n">mutable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="DryRunner.input_file-28"><a href="#DryRunner.input_file-28"><span class="linenos">28</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="DryRunner.input_file-29"><a href="#DryRunner.input_file-29"><span class="linenos">29</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve input file.&quot;&quot;&quot;</span>
+</span><span id="DryRunner.input_file-30"><a href="#DryRunner.input_file-30"><span class="linenos">30</span></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">host_file</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1155,9 +1180,9 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DryRunner.output_file"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.output_file-31"><a href="#DryRunner.output_file-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
-</span><span id="DryRunner.output_file-32"><a href="#DryRunner.output_file-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve output file.&quot;&quot;&quot;</span>
-</span><span id="DryRunner.output_file-33"><a href="#DryRunner.output_file-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">local_file</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.output_file-32"><a href="#DryRunner.output_file-32"><span class="linenos">32</span></a>    <span class="k">def</span> <span class="nf">output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OutputPathType</span><span class="p">:</span>
+</span><span id="DryRunner.output_file-33"><a href="#DryRunner.output_file-33"><span class="linenos">33</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve output file.&quot;&quot;&quot;</span>
+</span><span id="DryRunner.output_file-34"><a href="#DryRunner.output_file-34"><span class="linenos">34</span></a>        <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">local_file</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1171,15 +1196,20 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">run</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>,</span><span class="param">	<span class="n">handle_stdout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]]</span>,</span><span class="param">	<span class="n">handle_stderr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]]</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
                 <label class="view-source-button" for="DryRunner.run-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#DryRunner.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.run-35"><a href="#DryRunner.run-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="DryRunner.run-36"><a href="#DryRunner.run-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute command (in this dry runner this only captures the outputs).&quot;&quot;&quot;</span>
-</span><span id="DryRunner.run-37"><a href="#DryRunner.run-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DryRunner.run-36"><a href="#DryRunner.run-36"><span class="linenos">36</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+</span><span id="DryRunner.run-37"><a href="#DryRunner.run-37"><span class="linenos">37</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="DryRunner.run-38"><a href="#DryRunner.run-38"><span class="linenos">38</span></a>        <span class="n">cargs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+</span><span id="DryRunner.run-39"><a href="#DryRunner.run-39"><span class="linenos">39</span></a>        <span class="n">handle_stdout</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="DryRunner.run-40"><a href="#DryRunner.run-40"><span class="linenos">40</span></a>        <span class="n">handle_stderr</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="DryRunner.run-41"><a href="#DryRunner.run-41"><span class="linenos">41</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="DryRunner.run-42"><a href="#DryRunner.run-42"><span class="linenos">42</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute command (in this dry runner this only captures the outputs).&quot;&quot;&quot;</span>
+</span><span id="DryRunner.run-43"><a href="#DryRunner.run-43"><span class="linenos">43</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_cargs</span> <span class="o">=</span> <span class="n">cargs</span>
 </span></pre></div>
 
 
@@ -1200,14 +1230,14 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#DummyRunner"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="DummyRunner-40"><a href="#DummyRunner-40"><span class="linenos">40</span></a><span class="k">def</span> <span class="nf">DummyRunner</span><span class="p">():</span>  <span class="c1"># noqa</span>
-</span><span id="DummyRunner-41"><a href="#DummyRunner-41"><span class="linenos">41</span></a>    <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-</span><span id="DummyRunner-42"><a href="#DummyRunner-42"><span class="linenos">42</span></a>
-</span><span id="DummyRunner-43"><a href="#DummyRunner-43"><span class="linenos">43</span></a>    <span class="n">warn</span><span class="p">(</span>
-</span><span id="DummyRunner-44"><a href="#DummyRunner-44"><span class="linenos">44</span></a>        <span class="s2">&quot;The DummyRunner alias will be removed in a future version of styxdefs! &quot;</span>
-</span><span id="DummyRunner-45"><a href="#DummyRunner-45"><span class="linenos">45</span></a>        <span class="s2">&quot;Please use the new name DryRunner.&quot;</span>
-</span><span id="DummyRunner-46"><a href="#DummyRunner-46"><span class="linenos">46</span></a>    <span class="p">)</span>
-</span><span id="DummyRunner-47"><a href="#DummyRunner-47"><span class="linenos">47</span></a>    <span class="k">return</span> <span class="n">DryRunner</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DummyRunner-46"><a href="#DummyRunner-46"><span class="linenos">46</span></a><span class="k">def</span> <span class="nf">DummyRunner</span><span class="p">():</span>  <span class="c1"># noqa</span>
+</span><span id="DummyRunner-47"><a href="#DummyRunner-47"><span class="linenos">47</span></a>    <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+</span><span id="DummyRunner-48"><a href="#DummyRunner-48"><span class="linenos">48</span></a>
+</span><span id="DummyRunner-49"><a href="#DummyRunner-49"><span class="linenos">49</span></a>    <span class="n">warn</span><span class="p">(</span>
+</span><span id="DummyRunner-50"><a href="#DummyRunner-50"><span class="linenos">50</span></a>        <span class="s2">&quot;The DummyRunner alias will be removed in a future version of styxdefs! &quot;</span>
+</span><span id="DummyRunner-51"><a href="#DummyRunner-51"><span class="linenos">51</span></a>        <span class="s2">&quot;Please use the new name DryRunner.&quot;</span>
+</span><span id="DummyRunner-52"><a href="#DummyRunner-52"><span class="linenos">52</span></a>    <span class="p">)</span>
+</span><span id="DummyRunner-53"><a href="#DummyRunner-53"><span class="linenos">53</span></a>    <span class="k">return</span> <span class="n">DryRunner</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -1273,44 +1303,44 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#StyxRuntimeError"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="StyxRuntimeError-115"><a href="#StyxRuntimeError-115"><span class="linenos">115</span></a><span class="k">class</span> <span class="nc">StyxRuntimeError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-</span><span id="StyxRuntimeError-116"><a href="#StyxRuntimeError-116"><span class="linenos">116</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Styx runtime error.</span>
-</span><span id="StyxRuntimeError-117"><a href="#StyxRuntimeError-117"><span class="linenos">117</span></a>
-</span><span id="StyxRuntimeError-118"><a href="#StyxRuntimeError-118"><span class="linenos">118</span></a><span class="sd">    Raised when a command reports a non-zero return code.</span>
-</span><span id="StyxRuntimeError-119"><a href="#StyxRuntimeError-119"><span class="linenos">119</span></a>
-</span><span id="StyxRuntimeError-120"><a href="#StyxRuntimeError-120"><span class="linenos">120</span></a><span class="sd">    Attributes:</span>
-</span><span id="StyxRuntimeError-121"><a href="#StyxRuntimeError-121"><span class="linenos">121</span></a><span class="sd">        return_code: The return code of the failed command.</span>
-</span><span id="StyxRuntimeError-122"><a href="#StyxRuntimeError-122"><span class="linenos">122</span></a><span class="sd">        command_args: The arguments of the failed command.</span>
-</span><span id="StyxRuntimeError-123"><a href="#StyxRuntimeError-123"><span class="linenos">123</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="StyxRuntimeError-124"><a href="#StyxRuntimeError-124"><span class="linenos">124</span></a>
-</span><span id="StyxRuntimeError-125"><a href="#StyxRuntimeError-125"><span class="linenos">125</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-</span><span id="StyxRuntimeError-126"><a href="#StyxRuntimeError-126"><span class="linenos">126</span></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="StyxRuntimeError-127"><a href="#StyxRuntimeError-127"><span class="linenos">127</span></a>        <span class="n">return_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="StyxRuntimeError-128"><a href="#StyxRuntimeError-128"><span class="linenos">128</span></a>        <span class="n">command_args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="StyxRuntimeError-129"><a href="#StyxRuntimeError-129"><span class="linenos">129</span></a>        <span class="n">message_extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="StyxRuntimeError-130"><a href="#StyxRuntimeError-130"><span class="linenos">130</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError-131"><a href="#StyxRuntimeError-131"><span class="linenos">131</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the error.</span>
-</span><span id="StyxRuntimeError-132"><a href="#StyxRuntimeError-132"><span class="linenos">132</span></a>
-</span><span id="StyxRuntimeError-133"><a href="#StyxRuntimeError-133"><span class="linenos">133</span></a><span class="sd">        Args:</span>
-</span><span id="StyxRuntimeError-134"><a href="#StyxRuntimeError-134"><span class="linenos">134</span></a><span class="sd">            return_code: The return code of the failed command.</span>
-</span><span id="StyxRuntimeError-135"><a href="#StyxRuntimeError-135"><span class="linenos">135</span></a><span class="sd">            command_args: The arguments of the failed command.</span>
-</span><span id="StyxRuntimeError-136"><a href="#StyxRuntimeError-136"><span class="linenos">136</span></a><span class="sd">            message_extra: Additional error message.</span>
-</span><span id="StyxRuntimeError-137"><a href="#StyxRuntimeError-137"><span class="linenos">137</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="StyxRuntimeError-138"><a href="#StyxRuntimeError-138"><span class="linenos">138</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">return_code</span> <span class="o">=</span> <span class="n">return_code</span>
-</span><span id="StyxRuntimeError-139"><a href="#StyxRuntimeError-139"><span class="linenos">139</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">command_args</span> <span class="o">=</span> <span class="n">command_args</span>
-</span><span id="StyxRuntimeError-140"><a href="#StyxRuntimeError-140"><span class="linenos">140</span></a>
-</span><span id="StyxRuntimeError-141"><a href="#StyxRuntimeError-141"><span class="linenos">141</span></a>        <span class="k">if</span> <span class="n">return_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError-142"><a href="#StyxRuntimeError-142"><span class="linenos">142</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Command failed with return code </span><span class="si">{</span><span class="n">return_code</span><span class="si">}</span><span class="s2">.&quot;</span>
-</span><span id="StyxRuntimeError-143"><a href="#StyxRuntimeError-143"><span class="linenos">143</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="StyxRuntimeError-144"><a href="#StyxRuntimeError-144"><span class="linenos">144</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Command failed.&quot;</span>
-</span><span id="StyxRuntimeError-145"><a href="#StyxRuntimeError-145"><span class="linenos">145</span></a>
-</span><span id="StyxRuntimeError-146"><a href="#StyxRuntimeError-146"><span class="linenos">146</span></a>        <span class="k">if</span> <span class="n">command_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError-147"><a href="#StyxRuntimeError-147"><span class="linenos">147</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- Command args: </span><span class="si">{</span><span class="n">shlex</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">command_args</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="StyxRuntimeError-148"><a href="#StyxRuntimeError-148"><span class="linenos">148</span></a>
-</span><span id="StyxRuntimeError-149"><a href="#StyxRuntimeError-149"><span class="linenos">149</span></a>        <span class="k">if</span> <span class="n">message_extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError-150"><a href="#StyxRuntimeError-150"><span class="linenos">150</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">message_extra</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="StyxRuntimeError-151"><a href="#StyxRuntimeError-151"><span class="linenos">151</span></a>
-</span><span id="StyxRuntimeError-152"><a href="#StyxRuntimeError-152"><span class="linenos">152</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StyxRuntimeError-124"><a href="#StyxRuntimeError-124"><span class="linenos">124</span></a><span class="k">class</span> <span class="nc">StyxRuntimeError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="StyxRuntimeError-125"><a href="#StyxRuntimeError-125"><span class="linenos">125</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Styx runtime error.</span>
+</span><span id="StyxRuntimeError-126"><a href="#StyxRuntimeError-126"><span class="linenos">126</span></a>
+</span><span id="StyxRuntimeError-127"><a href="#StyxRuntimeError-127"><span class="linenos">127</span></a><span class="sd">    Raised when a command reports a non-zero return code.</span>
+</span><span id="StyxRuntimeError-128"><a href="#StyxRuntimeError-128"><span class="linenos">128</span></a>
+</span><span id="StyxRuntimeError-129"><a href="#StyxRuntimeError-129"><span class="linenos">129</span></a><span class="sd">    Attributes:</span>
+</span><span id="StyxRuntimeError-130"><a href="#StyxRuntimeError-130"><span class="linenos">130</span></a><span class="sd">        return_code: The return code of the failed command.</span>
+</span><span id="StyxRuntimeError-131"><a href="#StyxRuntimeError-131"><span class="linenos">131</span></a><span class="sd">        command_args: The arguments of the failed command.</span>
+</span><span id="StyxRuntimeError-132"><a href="#StyxRuntimeError-132"><span class="linenos">132</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="StyxRuntimeError-133"><a href="#StyxRuntimeError-133"><span class="linenos">133</span></a>
+</span><span id="StyxRuntimeError-134"><a href="#StyxRuntimeError-134"><span class="linenos">134</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="StyxRuntimeError-135"><a href="#StyxRuntimeError-135"><span class="linenos">135</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="StyxRuntimeError-136"><a href="#StyxRuntimeError-136"><span class="linenos">136</span></a>        <span class="n">return_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="StyxRuntimeError-137"><a href="#StyxRuntimeError-137"><span class="linenos">137</span></a>        <span class="n">command_args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="StyxRuntimeError-138"><a href="#StyxRuntimeError-138"><span class="linenos">138</span></a>        <span class="n">message_extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="StyxRuntimeError-139"><a href="#StyxRuntimeError-139"><span class="linenos">139</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError-140"><a href="#StyxRuntimeError-140"><span class="linenos">140</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the error.</span>
+</span><span id="StyxRuntimeError-141"><a href="#StyxRuntimeError-141"><span class="linenos">141</span></a>
+</span><span id="StyxRuntimeError-142"><a href="#StyxRuntimeError-142"><span class="linenos">142</span></a><span class="sd">        Args:</span>
+</span><span id="StyxRuntimeError-143"><a href="#StyxRuntimeError-143"><span class="linenos">143</span></a><span class="sd">            return_code: The return code of the failed command.</span>
+</span><span id="StyxRuntimeError-144"><a href="#StyxRuntimeError-144"><span class="linenos">144</span></a><span class="sd">            command_args: The arguments of the failed command.</span>
+</span><span id="StyxRuntimeError-145"><a href="#StyxRuntimeError-145"><span class="linenos">145</span></a><span class="sd">            message_extra: Additional error message.</span>
+</span><span id="StyxRuntimeError-146"><a href="#StyxRuntimeError-146"><span class="linenos">146</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StyxRuntimeError-147"><a href="#StyxRuntimeError-147"><span class="linenos">147</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">return_code</span> <span class="o">=</span> <span class="n">return_code</span>
+</span><span id="StyxRuntimeError-148"><a href="#StyxRuntimeError-148"><span class="linenos">148</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">command_args</span> <span class="o">=</span> <span class="n">command_args</span>
+</span><span id="StyxRuntimeError-149"><a href="#StyxRuntimeError-149"><span class="linenos">149</span></a>
+</span><span id="StyxRuntimeError-150"><a href="#StyxRuntimeError-150"><span class="linenos">150</span></a>        <span class="k">if</span> <span class="n">return_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError-151"><a href="#StyxRuntimeError-151"><span class="linenos">151</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Command failed with return code </span><span class="si">{</span><span class="n">return_code</span><span class="si">}</span><span class="s2">.&quot;</span>
+</span><span id="StyxRuntimeError-152"><a href="#StyxRuntimeError-152"><span class="linenos">152</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="StyxRuntimeError-153"><a href="#StyxRuntimeError-153"><span class="linenos">153</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Command failed.&quot;</span>
+</span><span id="StyxRuntimeError-154"><a href="#StyxRuntimeError-154"><span class="linenos">154</span></a>
+</span><span id="StyxRuntimeError-155"><a href="#StyxRuntimeError-155"><span class="linenos">155</span></a>        <span class="k">if</span> <span class="n">command_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError-156"><a href="#StyxRuntimeError-156"><span class="linenos">156</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- Command args: </span><span class="si">{</span><span class="n">shlex</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">command_args</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="StyxRuntimeError-157"><a href="#StyxRuntimeError-157"><span class="linenos">157</span></a>
+</span><span id="StyxRuntimeError-158"><a href="#StyxRuntimeError-158"><span class="linenos">158</span></a>        <span class="k">if</span> <span class="n">message_extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError-159"><a href="#StyxRuntimeError-159"><span class="linenos">159</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">message_extra</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="StyxRuntimeError-160"><a href="#StyxRuntimeError-160"><span class="linenos">160</span></a>
+</span><span id="StyxRuntimeError-161"><a href="#StyxRuntimeError-161"><span class="linenos">161</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1337,34 +1367,34 @@ Used as a factory for <code><a href="#Execution">Execution</a></code> objects.</
 
     </div>
     <a class="headerlink" href="#StyxRuntimeError.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="StyxRuntimeError.__init__-125"><a href="#StyxRuntimeError.__init__-125"><span class="linenos">125</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-</span><span id="StyxRuntimeError.__init__-126"><a href="#StyxRuntimeError.__init__-126"><span class="linenos">126</span></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="StyxRuntimeError.__init__-127"><a href="#StyxRuntimeError.__init__-127"><span class="linenos">127</span></a>        <span class="n">return_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="StyxRuntimeError.__init__-128"><a href="#StyxRuntimeError.__init__-128"><span class="linenos">128</span></a>        <span class="n">command_args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="StyxRuntimeError.__init__-129"><a href="#StyxRuntimeError.__init__-129"><span class="linenos">129</span></a>        <span class="n">message_extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="StyxRuntimeError.__init__-130"><a href="#StyxRuntimeError.__init__-130"><span class="linenos">130</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError.__init__-131"><a href="#StyxRuntimeError.__init__-131"><span class="linenos">131</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the error.</span>
-</span><span id="StyxRuntimeError.__init__-132"><a href="#StyxRuntimeError.__init__-132"><span class="linenos">132</span></a>
-</span><span id="StyxRuntimeError.__init__-133"><a href="#StyxRuntimeError.__init__-133"><span class="linenos">133</span></a><span class="sd">        Args:</span>
-</span><span id="StyxRuntimeError.__init__-134"><a href="#StyxRuntimeError.__init__-134"><span class="linenos">134</span></a><span class="sd">            return_code: The return code of the failed command.</span>
-</span><span id="StyxRuntimeError.__init__-135"><a href="#StyxRuntimeError.__init__-135"><span class="linenos">135</span></a><span class="sd">            command_args: The arguments of the failed command.</span>
-</span><span id="StyxRuntimeError.__init__-136"><a href="#StyxRuntimeError.__init__-136"><span class="linenos">136</span></a><span class="sd">            message_extra: Additional error message.</span>
-</span><span id="StyxRuntimeError.__init__-137"><a href="#StyxRuntimeError.__init__-137"><span class="linenos">137</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="StyxRuntimeError.__init__-138"><a href="#StyxRuntimeError.__init__-138"><span class="linenos">138</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">return_code</span> <span class="o">=</span> <span class="n">return_code</span>
-</span><span id="StyxRuntimeError.__init__-139"><a href="#StyxRuntimeError.__init__-139"><span class="linenos">139</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">command_args</span> <span class="o">=</span> <span class="n">command_args</span>
-</span><span id="StyxRuntimeError.__init__-140"><a href="#StyxRuntimeError.__init__-140"><span class="linenos">140</span></a>
-</span><span id="StyxRuntimeError.__init__-141"><a href="#StyxRuntimeError.__init__-141"><span class="linenos">141</span></a>        <span class="k">if</span> <span class="n">return_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError.__init__-142"><a href="#StyxRuntimeError.__init__-142"><span class="linenos">142</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Command failed with return code </span><span class="si">{</span><span class="n">return_code</span><span class="si">}</span><span class="s2">.&quot;</span>
-</span><span id="StyxRuntimeError.__init__-143"><a href="#StyxRuntimeError.__init__-143"><span class="linenos">143</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="StyxRuntimeError.__init__-144"><a href="#StyxRuntimeError.__init__-144"><span class="linenos">144</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Command failed.&quot;</span>
-</span><span id="StyxRuntimeError.__init__-145"><a href="#StyxRuntimeError.__init__-145"><span class="linenos">145</span></a>
-</span><span id="StyxRuntimeError.__init__-146"><a href="#StyxRuntimeError.__init__-146"><span class="linenos">146</span></a>        <span class="k">if</span> <span class="n">command_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError.__init__-147"><a href="#StyxRuntimeError.__init__-147"><span class="linenos">147</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- Command args: </span><span class="si">{</span><span class="n">shlex</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">command_args</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="StyxRuntimeError.__init__-148"><a href="#StyxRuntimeError.__init__-148"><span class="linenos">148</span></a>
-</span><span id="StyxRuntimeError.__init__-149"><a href="#StyxRuntimeError.__init__-149"><span class="linenos">149</span></a>        <span class="k">if</span> <span class="n">message_extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="StyxRuntimeError.__init__-150"><a href="#StyxRuntimeError.__init__-150"><span class="linenos">150</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">message_extra</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="StyxRuntimeError.__init__-151"><a href="#StyxRuntimeError.__init__-151"><span class="linenos">151</span></a>
-</span><span id="StyxRuntimeError.__init__-152"><a href="#StyxRuntimeError.__init__-152"><span class="linenos">152</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StyxRuntimeError.__init__-134"><a href="#StyxRuntimeError.__init__-134"><span class="linenos">134</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="StyxRuntimeError.__init__-135"><a href="#StyxRuntimeError.__init__-135"><span class="linenos">135</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="StyxRuntimeError.__init__-136"><a href="#StyxRuntimeError.__init__-136"><span class="linenos">136</span></a>        <span class="n">return_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="StyxRuntimeError.__init__-137"><a href="#StyxRuntimeError.__init__-137"><span class="linenos">137</span></a>        <span class="n">command_args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="StyxRuntimeError.__init__-138"><a href="#StyxRuntimeError.__init__-138"><span class="linenos">138</span></a>        <span class="n">message_extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="StyxRuntimeError.__init__-139"><a href="#StyxRuntimeError.__init__-139"><span class="linenos">139</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError.__init__-140"><a href="#StyxRuntimeError.__init__-140"><span class="linenos">140</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the error.</span>
+</span><span id="StyxRuntimeError.__init__-141"><a href="#StyxRuntimeError.__init__-141"><span class="linenos">141</span></a>
+</span><span id="StyxRuntimeError.__init__-142"><a href="#StyxRuntimeError.__init__-142"><span class="linenos">142</span></a><span class="sd">        Args:</span>
+</span><span id="StyxRuntimeError.__init__-143"><a href="#StyxRuntimeError.__init__-143"><span class="linenos">143</span></a><span class="sd">            return_code: The return code of the failed command.</span>
+</span><span id="StyxRuntimeError.__init__-144"><a href="#StyxRuntimeError.__init__-144"><span class="linenos">144</span></a><span class="sd">            command_args: The arguments of the failed command.</span>
+</span><span id="StyxRuntimeError.__init__-145"><a href="#StyxRuntimeError.__init__-145"><span class="linenos">145</span></a><span class="sd">            message_extra: Additional error message.</span>
+</span><span id="StyxRuntimeError.__init__-146"><a href="#StyxRuntimeError.__init__-146"><span class="linenos">146</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StyxRuntimeError.__init__-147"><a href="#StyxRuntimeError.__init__-147"><span class="linenos">147</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">return_code</span> <span class="o">=</span> <span class="n">return_code</span>
+</span><span id="StyxRuntimeError.__init__-148"><a href="#StyxRuntimeError.__init__-148"><span class="linenos">148</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">command_args</span> <span class="o">=</span> <span class="n">command_args</span>
+</span><span id="StyxRuntimeError.__init__-149"><a href="#StyxRuntimeError.__init__-149"><span class="linenos">149</span></a>
+</span><span id="StyxRuntimeError.__init__-150"><a href="#StyxRuntimeError.__init__-150"><span class="linenos">150</span></a>        <span class="k">if</span> <span class="n">return_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError.__init__-151"><a href="#StyxRuntimeError.__init__-151"><span class="linenos">151</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Command failed with return code </span><span class="si">{</span><span class="n">return_code</span><span class="si">}</span><span class="s2">.&quot;</span>
+</span><span id="StyxRuntimeError.__init__-152"><a href="#StyxRuntimeError.__init__-152"><span class="linenos">152</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="StyxRuntimeError.__init__-153"><a href="#StyxRuntimeError.__init__-153"><span class="linenos">153</span></a>            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Command failed.&quot;</span>
+</span><span id="StyxRuntimeError.__init__-154"><a href="#StyxRuntimeError.__init__-154"><span class="linenos">154</span></a>
+</span><span id="StyxRuntimeError.__init__-155"><a href="#StyxRuntimeError.__init__-155"><span class="linenos">155</span></a>        <span class="k">if</span> <span class="n">command_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError.__init__-156"><a href="#StyxRuntimeError.__init__-156"><span class="linenos">156</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">- Command args: </span><span class="si">{</span><span class="n">shlex</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">command_args</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="StyxRuntimeError.__init__-157"><a href="#StyxRuntimeError.__init__-157"><span class="linenos">157</span></a>
+</span><span id="StyxRuntimeError.__init__-158"><a href="#StyxRuntimeError.__init__-158"><span class="linenos">158</span></a>        <span class="k">if</span> <span class="n">message_extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StyxRuntimeError.__init__-159"><a href="#StyxRuntimeError.__init__-159"><span class="linenos">159</span></a>            <span class="n">message</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">message_extra</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="StyxRuntimeError.__init__-160"><a href="#StyxRuntimeError.__init__-160"><span class="linenos">160</span></a>
+</span><span id="StyxRuntimeError.__init__-161"><a href="#StyxRuntimeError.__init__-161"><span class="linenos">161</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
