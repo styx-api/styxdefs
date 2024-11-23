@@ -1,9 +1,5 @@
 """.. include:: ../../README.md"""  # noqa: D415
 
-from .dry_runner import (
-    DryRunner,
-    DummyRunner,
-)
 from .global_state import (
     get_global_runner,
     set_global_runner,
@@ -28,7 +24,6 @@ __all__ = [
     "Runner",
     "LocalRunner",
     "DryRunner",
-    "DummyRunner",
     "get_global_runner",
     "set_global_runner",
     "StyxRuntimeError",

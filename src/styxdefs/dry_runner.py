@@ -1,4 +1,4 @@
-"""Dummy runner for debugging purposes."""
+"""Dry runner for debugging purposes."""
 
 import pathlib
 import typing
@@ -40,13 +40,3 @@ class DryRunner(Runner, Execution):
     ) -> None:
         """Execute command (in this dry runner this only captures the outputs)."""
         self.last_cargs = cargs
-
-
-def DummyRunner():  # noqa
-    from warnings import warn
-
-    warn(
-        "The DummyRunner alias will be removed in a future version of styxdefs! "
-        "Please use the new name DryRunner."
-    )
-    return DryRunner()
