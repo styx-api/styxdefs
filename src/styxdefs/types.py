@@ -38,6 +38,33 @@ class Execution(typing.Protocol):
         """
         ...
 
+    def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
+        """Resolve local output files.
+
+        Args:
+            local_file: The local file path.
+            optional: If True, the output file is optional.
+
+        Returns:
+            OutputPathType: A host filepath.
+
+        Note:
+            Called (potentially multiple times) after all
+            `Runner.input_file()` calls.
+        """
+        ...
+
+    def params(self, params: dict) -> dict:
+        """Process tool parameters.
+
+        This is called by wrappers once before command-line arguments are built.
+        Parameters may be logged, cached, or modified.
+
+        Args:
+            params: Tool parameters.
+        """
+        ...
+
     def run(
         self,
         cargs: list[str],
@@ -59,22 +86,6 @@ class Execution(typing.Protocol):
         """
         ...
 
-    def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
-        """Resolve local output files.
-
-        Args:
-            local_file: The local file path.
-            optional: If True, the output file is optional.
-
-        Returns:
-            OutputPathType: A host filepath.
-
-        Note:
-            Called (potentially multiple times) after all
-            `Runner.input_file()` calls.
-        """
-        ...
-
 
 class Metadata(typing.NamedTuple):
     """Static tool metadata.
@@ -87,7 +98,7 @@ class Metadata(typing.NamedTuple):
     """Unique identifier of the tool."""
     name: str
     """Name of the tool."""
-    package: str | None = None
+    package: str
     """Name of the package that provides the tool."""
     citations: list[str] | None = None
     """List of references to cite when using the tool."""
@@ -101,7 +112,7 @@ class Runner(typing.Protocol):
     """Runner object used to execute commands.
 
     Possible examples would be `LocalRunner`,
-    `DockerRunner`, `DebugRunner`, ...
+    `DockerRunner`, `DryRunner`, ...
     Used as a factory for `Execution` objects.
     """
 

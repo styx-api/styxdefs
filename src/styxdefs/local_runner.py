@@ -57,6 +57,10 @@ class _LocalExecution(Execution):
         """Resolve local output files."""
         return self.output_dir / local_file
 
+    def params(self, params: dict) -> dict:
+        """Process tool parameters."""
+        return params
+
     def run(
         self,
         cargs: list[str],

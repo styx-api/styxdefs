@@ -13,6 +13,7 @@ class DryRunner(Runner, Execution):
         """Create new dry runner."""
         self.last_cargs: list[str] | None = None
         self.last_metadata: Metadata | None = None
+        self.last_params: dict | None = None
 
     def start_execution(self, metadata: Metadata) -> Execution:
         """Start execution."""
@@ -31,6 +32,11 @@ class DryRunner(Runner, Execution):
     def output_file(self, local_file: str, optional: bool = False) -> OutputPathType:
         """Resolve output file."""
         return pathlib.Path(local_file)
+
+    def params(self, params: dict) -> dict:
+        """Process tool parameters."""
+        self.last_params = params
+        return params
 
     def run(
         self,

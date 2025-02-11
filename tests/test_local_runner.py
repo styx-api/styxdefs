@@ -14,6 +14,7 @@ def test_local_runner(tmp_path: pathlib.Path) -> None:
         styxdefs.Metadata(
             id="123",
             name="test",
+            package="test",
         )
     )
 
