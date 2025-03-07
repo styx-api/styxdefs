@@ -7,7 +7,7 @@ authors = [
 ]
 requires-python = ">=3.10"
 readme = "README.md"
-license = "MIT License"
+license = "MIT"
 
 [dependency-groups]
 dev = [
