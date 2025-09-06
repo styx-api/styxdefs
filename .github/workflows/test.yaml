@@ -13,10 +13,9 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@v6
       with:
         enable-cache: true
-        pyproject-file: pyproject.toml
 
     - name: Run tests
       id: run-tests
@@ -30,7 +29,7 @@ jobs:
           --verbose
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         verbose: true
@@ -41,11 +40,10 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@v6
       with:
         enable-cache: true
-        pyproject-file: pyproject.toml
-        
+
     - name: Ruff format
       run: uv run ruff format --check
 
@@ -58,9 +56,8 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@v6
       with:
         enable-cache: true
-        pyproject-file: pyproject.toml
 
     - run: uv run mypy .
