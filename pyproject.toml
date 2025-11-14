@@ -1,6 +1,6 @@
 [project]
 name = "styxdefs"
-version = "0.5.1"
+version = "0.6.0"
 description = "Styx definitions and minimal runtime"
 authors = [
   {name = "Florian Rupprecht", email = "33600480+nx10@users.noreply.github.com"}
@@ -11,14 +11,13 @@ license = "MIT"
 
 [dependency-groups]
 dev = [
-  "pytest>=8.4.2",
-  "mypy>=1.17.1",
-  "pre-commit>=4.3.0",
-  "pytest-cov>=6.2.1",
-  "ruff>=0.12.12",
-  "deptry>=0.23.0"
+  "pytest>=9.0.1",
+  "mypy>=1.18.2",
+  "pre-commit>=4.4.0",
+  "pytest-cov>=7.0.0",
+  "ruff>=0.14.5"
 ]
-docs = ["pdoc>=15.0.0"]
+docs = ["pdoc>=16.0.0"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
