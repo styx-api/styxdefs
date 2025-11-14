@@ -17,6 +17,7 @@ from .types import (
     OutputPathType,
     Runner,
     StyxRuntimeError,
+    StyxValidationError,
 )
 
 __all__ = [
@@ -30,4 +31,5 @@ __all__ = [
     "get_global_runner",
     "set_global_runner",
     "StyxRuntimeError",
+    "StyxValidationError",
 ]

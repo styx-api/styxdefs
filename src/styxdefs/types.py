@@ -169,3 +169,18 @@ class StyxRuntimeError(Exception):
             message += f"\n{message_extra}"
 
         super().__init__(message)
+
+
+class StyxValidationError(Exception):
+    """Styx validation error.
+
+    Raised when input validation fails for parameters.
+    """
+
+    def __init__(self, message: str) -> None:
+        """Initialize the error.
+
+        Args:
+            message: The validation error message.
+        """
+        super().__init__(message)
